@@ -5,8 +5,10 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [react()],
+	assetsInclude:['**/*.woff'],
 	resolve: {
 		alias: {
+			'@': path.resolve(__dirname, 'src'),
 			'@constants': path.resolve(__dirname, './src/constants'),
 			'@components': path.resolve(__dirname, './src/components'),
 			'@store': path.resolve(__dirname, './src/store'),
@@ -16,6 +18,13 @@ export default defineConfig({
 			'@icons': path.resolve(__dirname, './src/icons'),
 			'@utils': path.resolve(__dirname, './src/utils'),
 		},
+	},
+	css: {
+	preprocessorOptions: {
+			scss: {
+				additionalData: '@import "@constants/variables.scss";'
+			}
+		}
 	},
 	preview: {
 		port: 8081,
