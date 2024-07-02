@@ -1,4 +1,6 @@
-export const CartIcon: React.FC = () => {
+import { IconProps } from "./utils/IconProps"
+
+export const CartIcon: React.FC<IconProps> = () => {
     return(
         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2.85791 4.40289H4.54208C5.29445 4.40289 5.67063 4.40289 5.95385 4.6072C6.23707 4.81151 6.35598 5.16823 6.59379 5.88168L7.18185 7.64585" stroke="#141C24" stroke-width="1.5" stroke-linecap="round"/>

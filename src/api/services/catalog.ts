@@ -7,9 +7,18 @@ query getPizzasCatalog {
       description
       id
       img
+      ingredients{
+        name
+      }
       name
       sizes{
+        name
         price
+      }
+      toppings{
+        cost
+        img
+        name
       }
     }
   }

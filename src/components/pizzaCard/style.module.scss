@@ -16,9 +16,8 @@
 }
 
 .pizza_title{
-    font-size: $title-text-size;
+    font-size: $title-h3-text-size;
     color: $title-text-color;
-    margin: 0 0 10px 0;
 }
 
 .pizza_subtitle{
@@ -28,7 +27,8 @@
 }
 
 .pizza_price{
-    font-size: $title-text-size;
+    font-size: $title-h3-text-size;
     color: $title-text-color;
     margin: 0 0 20px 0;
+    font-weight: 600;
 }

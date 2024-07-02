@@ -1,4 +1,6 @@
-export const UserIcon: React.FC = () => {
+import { IconProps } from "./utils/IconProps"
+
+export const UserIcon: React.FC<IconProps> = () => {
     return(
         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M16 8.57104C16 10.7802 14.2091 12.571 12 12.571C9.79086 12.571 8 10.7802 8 8.57104C8 6.36191 9.79086 4.57104 12 4.57104C14.2091 4.57104 16 6.36191 16 8.57104ZM14.5 8.57104C14.5 9.95176 13.3807 11.071 12 11.071C10.6193 11.071 9.5 9.95176 9.5 8.57104C9.5 7.19033 10.6193 6.07104 12 6.07104C13.3807 6.07104 14.5 7.19033 14.5 8.57104Z" fill="#141C24"/>

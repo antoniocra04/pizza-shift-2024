@@ -1,4 +1,6 @@
-export const TimeIcon: React.FC = () => {
+import { IconProps } from "./utils/IconProps"
+
+export const TimeIcon: React.FC<IconProps> = () => {
     return(
         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M15.9239 16.6948C16.2375 16.4097 16.2492 15.9202 15.9494 15.6205L12.7 12.371V7.32104C12.7 6.90683 12.3642 6.57104 11.95 6.57104C11.5358 6.57104 11.2 6.90683 11.2 7.32104V12.5568C11.2 12.822 11.3054 13.0764 11.4929 13.2639L14.8994 16.6705C15.1797 16.9507 15.6306 16.9614 15.9239 16.6948Z" fill="#141C24"/>

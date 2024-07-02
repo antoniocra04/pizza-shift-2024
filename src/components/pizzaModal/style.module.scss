@@ -1,0 +1,59 @@
+.pizza_modal{
+    display: flex;
+    column-gap: 30px;
+}
+
+.pizza_modal__cross{
+    display: flex;
+    justify-content: end;
+}
+
+.pizza_modal__info{
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+}
+
+.pizza_modal__scroll{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    height: 500px;
+    row-gap: 25px;
+    padding: 10px;
+}
+
+.pizza_modal__info_text{
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.pizza_modal__title{
+    font-weight: 700;
+    font-size: $title-h2-text-size;
+    color: $title-text-color;
+}
+
+.pizza_modal__subtitle{
+    font-size: $body-primary-small-text-size;
+    color: $body-primary-text-color;
+    margin: 0 0 8px 0;
+}
+
+.pizza_modal__ingredients{
+    font-size: $body-primary-text-size;
+    color: $body-primary-text-color;
+}
+
+.pizza_modal__add_text{
+    font-weight: 500;
+    font-size: $secondary-text-size;
+    color: $title-text-color;
+}
+
+.pizza_modal__topings{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}

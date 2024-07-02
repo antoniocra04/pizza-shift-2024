@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App.tsx';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-
 import './index.scss';
 
 const client = new ApolloClient({
-	uri: 'https://shift-backend.onrender.com/graphql',
+	uri: `${import.meta.env.VITE_BACKEND_URL}/graphql`,
 	cache: new InMemoryCache(),
 });
 
