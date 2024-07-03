@@ -10,13 +10,15 @@ import { Modal } from '@components/modal';
 import { isIngredientExist } from '../../helpers/isIngredientExist';
 
 import styles from './style.module.scss';
+import { CartPizza } from '@store/cart/cartSlice';
 
 interface PizzaModalProps {
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
-  pizza: Pizza;
+  pizza: Pizza | CartPizza;
+  onClick: (toppings: PizzaIngredientInput[], currentSize: number) => void;
 }
 
-export const PizzaModal = ({ setActive, pizza }: PizzaModalProps) => {
+export const PizzaModal = ({ setActive, pizza, onClick }: PizzaModalProps) => {
   const [currentSize, setCurrentSize] = useState(0);
   const [toppings, setToppings] = useState<PizzaIngredientInput[]>([]);
 
@@ -78,7 +80,7 @@ export const PizzaModal = ({ setActive, pizza }: PizzaModalProps) => {
             </div>
           </div>
 
-          <Button>Добавить в корзину</Button>
+          <Button onClick={() => onClick(toppings, currentSize)}>Добавить в корзину</Button>
         </div>
       </div>
     </Modal>
