@@ -1,0 +1,14 @@
+.button {
+	padding: 16px 32px;
+	background-color: $primary;
+	color: $invert-text-color;
+	border-radius: 16px;
+	border: none;
+	font-size: $secondary-text-size;
+	font-weight: 600;
+	cursor: pointer;
+
+    &:hover{
+        filter: grayscale(10%);
+    }
+}
