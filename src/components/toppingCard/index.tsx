@@ -1,31 +1,34 @@
 import { useState } from 'react';
-import classnames from 'classnames'
+import classnames from 'classnames';
 import { Ingredient } from '@api/__generated__/graphql';
 
-import styles from './style.module.scss'
+import styles from './style.module.scss';
 
-interface ToppingCardProps{
-    img: string;
-    name: Ingredient;
-    price: number;
-    onClick: (name: Ingredient, price: number) => void;
+interface ToppingCardProps {
+  img: string;
+  name: Ingredient;
+  price: number;
+  onClick: (name: Ingredient, price: number) => void;
 }
 
-export const ToppingCard: React.FC<ToppingCardProps> = ({img, name, price, onClick}) => {
-    const [isSelected, setIsSelected] = useState(false)
+export const ToppingCard = ({ img, name, price, onClick }: ToppingCardProps) => {
+  const [isSelected, setIsSelected] = useState(false);
 
-    const handleSelect = () => {
-        onClick(name, price);
-        setIsSelected(!isSelected);
-    }
+  const handleSelect = () => {
+    onClick(name, price);
+    setIsSelected(!isSelected);
+  };
 
-    return(
-        <div className={classnames(styles.topping_card, isSelected ? styles.__active : '')} onClick={handleSelect}>
-            <div>
-                <img width={100} src={img} alt="" />
-                <p className={styles.topping_text}>{name}</p>
-            </div>
-            <p className={styles.topping_price}>{price}₽</p>
-        </div>
-    )
-}
+  return (
+    <div
+      className={classnames(styles.topping_card, isSelected ? styles.__active : '')}
+      onClick={handleSelect}
+    >
+      <div>
+        <img width={100} src={img} alt="" />
+        <p className={styles.topping_text}>{name}</p>
+      </div>
+      <p className={styles.topping_price}>{price}₽</p>
+    </div>
+  );
+};

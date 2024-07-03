@@ -1,2 +1,2 @@
 declare module '*.module.scss';
-import 'vite/client'
+import 'vite/client';
