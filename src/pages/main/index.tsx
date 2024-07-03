@@ -1,7 +1,7 @@
 import { PageLayout } from '@components/pageLayout';
 import { PizzaCatalog } from '@components/pizzaCatalog';
 
-export const MainPage:  = () => {
+export const MainPage = () => {
   return (
     <PageLayout>
       <PizzaCatalog />
