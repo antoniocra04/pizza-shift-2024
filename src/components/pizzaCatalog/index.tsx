@@ -1,38 +1,50 @@
+import { useState } from 'react';
+import { GET_PIZZA_CATALOG } from '@api/services/catalog';
+import { PizzaCard } from '@components/pizzaCard';
+import { PizzaModal } from '@components/pizzaModal';
+import { useQuery } from '@apollo/client';
 
-import { useState } from "react";
-import { GET_PIZZA_CATALOG } from "@api/services/catalog"
-import { PizzaCard } from "@components/pizzaCard";
-import { PizzaModal } from "@components/pizzaModal";
-import { useQuery } from "@apollo/client"
+import styles from './style.module.scss';
+import { PizzaInput } from '@api/__generated__/graphql';
 
-import styles from "./style.module.scss";
+export const PizzaCatalog = () => {
+  const { loading, data } = useQuery(GET_PIZZA_CATALOG);
+  const [selectedPizza, setSelectedPizza] = useState<PizzaInput>();
+  const [isModalActive, setIsModalActive] = useState(false);
+  const showModal = isModalActive && data;
 
-export const PizzaCatalog: React.FC = () => {
-    const {loading, data} = useQuery(GET_PIZZA_CATALOG);
-    const [selectedPizza, setSelectedPizza] = useState("");
-    const [isModalActive, setIsModalActive] = useState(false);
+  const selectPizza = (pizzaId: string) => {
+    setIsModalActive(true);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    setSelectedPizza(data.getPizzasCatalog.catalog.find((pizza) => pizza.id == pizzaId));
+  };
 
-    const selectPizza = (pizzaId: string) => {
-        setIsModalActive(true)
-        setSelectedPizza(pizzaId)
-    }
+  return (
+    <div className={styles.pizza_catalog}>
+      {loading
+        ? 'sdf'
+        : data?.getPizzasCatalog.catalog.map(({name, description, sizes, img, id}) => (
+            <PizzaCard
+              key={id}
+              title={name}
+              subtitle={description}
+              price={sizes[0].price}
+              img={img}
+              onClick={() => selectPizza(id)}
+            />
+          ))}
+      {
 
-    return(
-        <div className={styles.pizza_catalog}>
-            {
-                loading ?
-                "sdf"
-                :
-                data?.getPizzasCatalog.catalog.map((pizza, index) => (
-                    <PizzaCard key={index} title={pizza.name} subtitle={pizza.description} price={pizza.sizes[0].price} img={pizza.img} onClick={() => selectPizza(pizza.id)} />
-                ))
-            }
-            {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                //@ts-ignore
-                isModalActive && <PizzaModal setActive={setIsModalActive} pizza={data && data.getPizzasCatalog.catalog[parseInt(selectedPizza)-1]}/>
-            }
-
-        </div>
-    )
-}
+         showModal && (
+          <PizzaModal
+            setActive={setIsModalActive}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
+            pizza={selectedPizza}
+          />
+        )
+      }
+    </div>
+  );
+};

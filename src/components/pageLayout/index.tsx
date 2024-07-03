@@ -1,18 +1,16 @@
-import { Header } from "@components/header"
+import { Header } from '@components/header';
 
-import styles from "./style.module.scss"
+import styles from './style.module.scss';
 
 interface PageLayoutProps {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }
 
-export const PageLayout: React.FC<PageLayoutProps> = ({children}) => {
-    return(
-        <>
-            <Header/>
-            <main className={styles.main}>
-                {children}
-            </main>
-        </>
-    )
-}
+export const PageLayout = ({ children }: PageLayoutProps) => {
+  return (
+    <>
+      <Header />
+      <main className={styles.main}>{children}</main>
+    </>
+  );
+};

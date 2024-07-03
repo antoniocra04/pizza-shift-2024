@@ -446,10 +446,7 @@ type Mutation {
     receiverAddress: CreatePizzaPaymentAddressDto!
   ): PizzaPaymentResponse!
   signin(code: Float!, phone: String!): SignInResponse!
-  updateProfile(
-    phone: String!
-    profile: UpdateProfileProfileDto!
-  ): UpdateProfileResponse!
+  updateProfile(phone: String!, profile: UpdateProfileProfileDto!): UpdateProfileResponse!
 }
 
 type Otp {

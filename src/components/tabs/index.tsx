@@ -1,33 +1,16 @@
-import classNames  from 'classnames'
-
-import styles from './style.module.scss'
+import styles from './style.module.scss';
+import { Tab } from './tab';
 
 interface TabsProps {
-	data: string[];
-    active: number;
-	setActive: React.Dispatch<React.SetStateAction<number>>
+  tabs: string[];
+  active: number;
+  setActive: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const Tabs: React.FC<TabsProps> = ({ data, setActive, active }) => {
-
-	return (
-		<>
-			<div className={styles.tabs}>
-				{data.map((e, index) => (
-					<button
-						key={index}
-						onClick={() => {
-							setActive(index);
-						}}
-						className={classNames(
-                            styles.tab,
-                            active === index ? styles.__active : ''
-                        )}
-					>
-						{e}
-					</button>
-				))}
-			</div>
-		</>
-	);
-};
+export const Tabs = ({ tabs, setActive, active }: TabsProps) => (
+  <div className={styles.tabs}>
+    {tabs.map((tab, index) => (
+      <Tab title={tab} isActive={index == active} onClick={() => setActive(index)}/>
+    ))}
+  </div>
+);
