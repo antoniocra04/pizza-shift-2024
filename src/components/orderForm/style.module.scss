@@ -1,0 +1,25 @@
+.order_form{
+    display: flex;
+    flex-direction: column;
+    width: 460px;
+    row-gap: 24px;
+}
+
+.order_form__item{
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+}
+
+.order_form__label{
+    font-size: $p-medium-size;
+    color: $text-primary-color;
+}
+
+.order_form__buttons{
+    display: flex;
+    justify-content: space-between;
+    button{
+        width: 48%;
+    }
+}

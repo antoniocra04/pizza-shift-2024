@@ -27,7 +27,7 @@ export const CartPizzaCard = ({onChange, onDelete, pizza}: CartPizzaCardProps) =
             <Counter count={count} setCount={setCount}/>
             <p className={styles.cart_pizza_card__change} onClick={onChange}>Изменить</p>
             <p className={styles.cart_pizza_card__price}>{pizza.totalPrice}₽</p>
-            <CrossIcon style={{cursor: 'pointer'}} onClick={onDelete}/>
+            <CrossIcon className={styles.cart_pizza_card__icon} onClick={onDelete}/>
         </div>
     )
 }

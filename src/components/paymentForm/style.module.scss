@@ -1,0 +1,37 @@
+.payemnt_form{
+    display: flex;
+    flex-direction: column;
+    width: 428px;
+    row-gap: 24px;
+}
+
+.payment_form__container{
+    padding: 24px;
+    width: 380px;
+    height: 215px;
+    background-color: $disabled;
+    border-radius: 14px;
+    row-gap: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.payment_form__number_container{
+
+}
+
+.payment_form__other_container{
+    display: flex;
+    justify-content: space-between;
+
+    div{
+        width: 47%;
+    }
+}
+
+.payemnt_form__item{
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+}

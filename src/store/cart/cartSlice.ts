@@ -65,9 +65,9 @@ export const cartSlice = createSlice({
             state.products = newProducts
             cartSlice.caseReducers.updateTotalCartPrice(state)
         },
+        clearCart: () => initialState,
         updateTotalCartPrice: (state) => {
             let totalCartPrice = 0;
-            console.log(state.products)
             state.products.forEach((product) => {
                 totalCartPrice += calculateTotalPrice(product.currentSize, product.selectedToppings) * product.count
             })
@@ -76,6 +76,6 @@ export const cartSlice = createSlice({
 	},
 });
 
-export const { addProduct, removeProduct, editProduct } = cartSlice.actions;
+export const { addProduct, removeProduct, editProduct, clearCart } = cartSlice.actions;
 export const selectCart = (state: RootState): CartState => state.cart;
 export default cartSlice.reducer;
