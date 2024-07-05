@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 import { UserIcon, TimeIcon, CartIcon, ExitIcon } from '@icons/index';
 
 import styles from './style.module.scss';

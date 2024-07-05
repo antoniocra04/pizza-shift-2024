@@ -1,7 +1,10 @@
-import { Button } from "@ui/button"
-import styles from './style.module.scss'
-import { useTypedSelector } from "@store/hooks/baseHooks"
 import { useNavigate } from "react-router-dom"
+
+import { Button } from "@ui/button"
+
+import { useTypedSelector } from "@store/hooks/baseHooks"
+
+import styles from './style.module.scss'
 
 export const CartTotalLabel = () => {
     const cartTotalPrice = useTypedSelector((state) => state.cart.cartTotalPrice)

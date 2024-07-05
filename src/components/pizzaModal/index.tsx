@@ -1,6 +1,9 @@
 import { useState } from 'react';
+
 import { Ingredient, Pizza, PizzaIngredientInput } from '@api/__generated__/graphql';
+
 import { CrossIcon } from '@icons/CrossIcon';
+
 import { Button } from '@ui/button';
 
 import { Tabs } from '@components/tabs';
@@ -9,8 +12,10 @@ import { Modal } from '@components/modal';
 
 import { isIngredientExist } from '../../helpers/isIngredientExist';
 
-import styles from './style.module.scss';
 import { CartPizza } from '@store/cart/cartSlice';
+
+import styles from './style.module.scss';
+
 
 interface PizzaModalProps {
   setActive: React.Dispatch<React.SetStateAction<boolean>>;

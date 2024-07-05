@@ -1,13 +1,17 @@
+import { useState } from "react"
+import { SubmitHandler } from "react-hook-form"
+
 import { Dough } from "@api/__generated__/graphql"
+
 import { PageLayout } from "@components/pageLayout"
 import { PageTitle } from "@components/pageTitle"
 import { PaymentForm, PaymentFormInputs } from "@components/paymentForm"
 import { PaymentSuccsessModal } from "@components/paymentSuccsessModal"
+
 import { useCreateOrder } from "@hooks/useCreateOrder/useCreateOrder"
+
 import { clearCart } from "@store/cart/cartSlice"
 import { useTypedDispatch, useTypedSelector } from "@store/hooks/baseHooks"
-import { useState } from "react"
-import { SubmitHandler } from "react-hook-form"
 
 export const PaymentPage = () => {
     const [createOrder, {data}] = useCreateOrder()

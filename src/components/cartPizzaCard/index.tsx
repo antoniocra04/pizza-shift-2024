@@ -1,9 +1,13 @@
-import { CrossIcon } from '@icons/CrossIcon'
-import styles from './style.module.scss'
-import { CartPizza, editProduct } from '@store/cart/cartSlice';
-import { Counter } from '@components/counter';
 import { useEffect, useState } from 'react';
+
+import { CrossIcon } from '@icons/CrossIcon'
+
 import { useTypedDispatch } from '@store/hooks/baseHooks';
+import { CartPizza, editProduct } from '@store/cart/cartSlice';
+
+import { Counter } from '@components/counter';
+
+import styles from './style.module.scss'
 
 interface CartPizzaCardProps{
     pizza: CartPizza,

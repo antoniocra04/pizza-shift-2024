@@ -1,14 +1,18 @@
 import { useState } from 'react';
+
 import { GET_PIZZA_CATALOG } from '@api/services/catalog';
+import { PizzaIngredientInput, PizzaInput } from '@api/__generated__/graphql';
+
 import { PizzaCard } from '@components/pizzaCard';
 import { PizzaModal } from '@components/pizzaModal';
 import { useQuery } from '@apollo/client';
 
-import styles from './style.module.scss';
-import { PizzaIngredientInput, PizzaInput } from '@api/__generated__/graphql';
 import { useTypedDispatch } from '@store/hooks/baseHooks';
 import { addProduct } from '@store/cart/cartSlice';
+
 import { calculateTotalPrice } from '../../helpers/calculateTotalPrice';
+
+import styles from './style.module.scss';
 
 export const PizzaCatalog = () => {
   const { loading, data } = useQuery(GET_PIZZA_CATALOG);

@@ -1,5 +1,6 @@
-import styles from './style.module.scss';
 import { Tab } from './tab';
+
+import styles from './style.module.scss';
 
 interface TabsProps {
   tabs: string[];

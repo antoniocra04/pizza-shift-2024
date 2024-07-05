@@ -1,11 +1,14 @@
+import { useNavigate } from 'react-router-dom'
+
 import {SubmitHandler, useForm} from 'react-hook-form'
+
 import { Input } from "@ui/input"
 import { Button } from "@ui/button"
 
-import styles from './style.module.scss'
-import { useNavigate } from 'react-router-dom'
 import { useTypedDispatch } from '@store/hooks/baseHooks'
 import { addInfo } from '@store/orderInfo/orderInfoSlice'
+
+import styles from './style.module.scss'
 
 type Inputs = {
     surname: string;

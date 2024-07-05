@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom"
+
 import { Modal } from "@components/modal"
 import { CrossIcon } from "@icons/CrossIcon"
 import { SuccsessIcon } from "@icons/SuccsessIcon"
+
 import styles from './style.module.scss'
-import { Link } from "react-router-dom"
 
 interface PaymentSuccsessModalProps{
     order: string;

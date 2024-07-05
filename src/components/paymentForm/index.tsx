@@ -1,8 +1,10 @@
+import { useHookFormMask } from 'use-mask-input';
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import { Button } from "@ui/button"
 import { Input } from "@ui/input"
-import { useHookFormMask } from 'use-mask-input';
+
 import styles from './style.module.scss'
-import { SubmitHandler, useForm } from "react-hook-form";
 
 export type PaymentFormInputs = {
     number: string;
