@@ -6,7 +6,7 @@ import { Input } from "@ui/input"
 
 import styles from './style.module.scss'
 
-export type PaymentFormInputs = {
+export interface PaymentFormInputs {
     number: string;
     date: string;
     cvv: string;

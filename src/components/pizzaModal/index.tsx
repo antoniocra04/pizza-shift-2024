@@ -10,7 +10,7 @@ import { Tabs } from '@components/tabs';
 import { ToppingCard } from '@components/toppingCard';
 import { Modal } from '@components/modal';
 
-import { isIngredientExist } from '../../helpers/isIngredientExist';
+import { isIngredientExist } from '@helpers/isIngredientExist';
 
 import { CartPizza } from '@store/cart/cartSlice';
 

@@ -10,7 +10,7 @@ import { useQuery } from '@apollo/client';
 import { useTypedDispatch } from '@store/hooks/baseHooks';
 import { addProduct } from '@store/cart/cartSlice';
 
-import { calculateTotalPrice } from '../../helpers/calculateTotalPrice';
+import { calculateTotalPrice } from '@helpers/calculateTotalPrice';
 
 import styles from './style.module.scss';
 

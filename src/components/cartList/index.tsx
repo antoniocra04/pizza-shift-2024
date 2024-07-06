@@ -1,17 +1,16 @@
 import { useState } from "react"
 
 import { CartPizzaCard } from "@components/cartPizzaCard"
+import { PizzaModal } from "@components/pizzaModal"
 
 import { useTypedDispatch, useTypedSelector } from "@store/hooks/baseHooks"
 import { CartPizza, editProduct, removeProduct } from "@store/cart/cartSlice"
 
 import { PizzaIngredientInput } from "@api/__generated__/graphql"
 
-import { calculateTotalPrice } from "../../helpers/calculateTotalPrice"
+import { calculateTotalPrice } from "@helpers/calculateTotalPrice"
 
 import style from './style.module.scss'
-
-import { PizzaModal } from "@components/pizzaModal"
 
 export const CartList = () => {
     const [isModalActive, setIsModalActive] = useState(false)

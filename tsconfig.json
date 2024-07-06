@@ -28,7 +28,8 @@
       "@api/*": ["./src/api/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@icons/*": ["./src/icons/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@helpers/*": ["./src/helpers/*"]
     }
   },
   "include": ["src"],

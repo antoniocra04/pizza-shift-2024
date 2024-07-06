@@ -1,7 +1,7 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { type RootState } from '../index';
 import { PizzaIngredientInput, PizzaSizeInput } from '@api/__generated__/graphql';
-import { calculateTotalPrice } from '../../helpers/calculateTotalPrice';
+import { calculateTotalPrice } from '@helpers/calculateTotalPrice';
 
 export interface CartPizza{
     img: string;
@@ -17,7 +17,7 @@ export interface CartPizza{
 }
 
 interface CartState {
-	products: CartPizza[];
+    products: CartPizza[];
     cartTotalPrice: number;
 }
 

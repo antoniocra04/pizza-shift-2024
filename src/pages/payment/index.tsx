@@ -20,6 +20,7 @@ export const PaymentPage = () => {
     const orderInfo = useTypedSelector((state) => state.orderInfo)
     const cart = useTypedSelector((state) => state.cart)
     const cartDispatch = useTypedDispatch()
+    const order = cart.products.map((product) => product.name + ' ').toString()
 
     const onSubmit: SubmitHandler<PaymentFormInputs>  = (data) => {
         const {number, cvv, date} = data
@@ -63,7 +64,7 @@ export const PaymentPage = () => {
             <PageTitle title="Введите данные карты для оплаты" />
             <PaymentForm onSubmit={onSubmit}/>
             {
-                showModal && <PaymentSuccsessModal order={cart.products.map((product) => product.name + ' ').toString()} price={cart.cartTotalPrice} address={`${orderInfo.address.street}, ${orderInfo.address.house}, ${orderInfo.address.apartment}`} />
+                showModal && <PaymentSuccsessModal order={order} price={cart.cartTotalPrice} address={`${orderInfo.address.street}, ${orderInfo.address.house}, ${orderInfo.address.apartment}`} />
             }
         </PageLayout>
     )
