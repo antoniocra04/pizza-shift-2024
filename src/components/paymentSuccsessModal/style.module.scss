@@ -1,0 +1,55 @@
+.succsess_modal__cross{
+    display: flex;
+    justify-content: end;
+}
+
+.succsess_modal__header{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 24px;
+
+    h2{
+        font-size: $title-h2-text-size;
+        color: $text-primary-color;
+        font-weight: 700;
+    }
+}
+
+.succsess_modal__info{
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+}
+
+.succsess_modal__info_item{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+
+    p:first-child{
+        color: $text-tertiary-color;
+        font-size: $p-regular-size;
+    }
+
+    p:last-child{
+        color: $text-primary-color;
+        font-size: $secondary-text-color;
+    }
+}
+
+.succsess_modal__subtitle{
+    color: $text-quartenery-color;
+    font-size: $p-medium-size;
+}
+
+.succsess_modal__button{
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    a{
+        color: $text-primary-color;
+        text-decoration: underline;
+    }
+}

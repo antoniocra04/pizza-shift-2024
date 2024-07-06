@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 import { UserIcon, TimeIcon, CartIcon, ExitIcon } from '@icons/index';
 
 import styles from './style.module.scss';
@@ -6,7 +7,7 @@ import styles from './style.module.scss';
 export const Header = () => (
   <header className={styles.header}>
     <div className={styles.header_container}>
-      <img src="./logo.svg" alt="" />
+      <Link to="/"><img height={57} src="./logo.svg" alt="" /></Link>
       <nav className={styles.header_nav}>
         <ul className={styles.header_nav__list}>
           <li className={styles.header_nav__list_item}>
@@ -24,7 +25,7 @@ export const Header = () => (
         </ul>
         <ul className={styles.header_nav__list}>
           <li className={styles.header_nav__list_item}>
-            <Link to="#">
+            <Link to="/cart">
               <CartIcon />
               Корзина
             </Link>

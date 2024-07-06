@@ -1,22 +1,29 @@
 import { useState } from 'react';
+
 import { Ingredient, Pizza, PizzaIngredientInput } from '@api/__generated__/graphql';
+
 import { CrossIcon } from '@icons/CrossIcon';
+
 import { Button } from '@ui/button';
 
 import { Tabs } from '@components/tabs';
 import { ToppingCard } from '@components/toppingCard';
 import { Modal } from '@components/modal';
 
-import { isIngredientExist } from '../../helpers/isIngredientExist';
+import { isIngredientExist } from '@helpers/isIngredientExist';
+
+import { CartPizza } from '@store/cart/cartSlice';
 
 import styles from './style.module.scss';
 
+
 interface PizzaModalProps {
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
-  pizza: Pizza;
+  pizza: Pizza | CartPizza;
+  onClick: (toppings: PizzaIngredientInput[], currentSize: number) => void;
 }
 
-export const PizzaModal = ({ setActive, pizza }: PizzaModalProps) => {
+export const PizzaModal = ({ setActive, pizza, onClick }: PizzaModalProps) => {
   const [currentSize, setCurrentSize] = useState(0);
   const [toppings, setToppings] = useState<PizzaIngredientInput[]>([]);
 
@@ -78,7 +85,7 @@ export const PizzaModal = ({ setActive, pizza }: PizzaModalProps) => {
             </div>
           </div>
 
-          <Button>Добавить в корзину</Button>
+          <Button onClick={() => onClick(toppings, currentSize)}>Добавить в корзину</Button>
         </div>
       </div>
     </Modal>

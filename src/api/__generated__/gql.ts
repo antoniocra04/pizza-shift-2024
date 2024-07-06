@@ -13,8 +13,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-  '\nquery getPizzasCatalog {\n  getPizzasCatalog {\n    catalog{\n      description\n      id\n      img\n      ingredients{\n        name\n      }\n      name\n      sizes{\n        name\n        price\n      }\n      toppings{\n        cost\n        img\n        name\n      }\n    }\n  }\n}\n':
-    types.GetPizzasCatalogDocument,
+    "\nquery getPizzasCatalog {\n  getPizzasCatalog {\n    catalog{\n      description\n      id\n      img\n      ingredients{\n        name\n      }\n      name\n      sizes{\n        name\n        price\n      }\n      toppings{\n        cost\n        img\n        name\n      }\n    }\n  }\n}\n": types.GetPizzasCatalogDocument,
+    "\n        mutation createOrder($number: CreatePizzaPaymentDebitCardDto!, $person: CreatePizzaPaymentPersonDto!, $pizzas: [CreatePizzaPaymentPizzaDto!]!, $address: CreatePizzaPaymentAddressDto!){\n            createPizzaPayment(debitCard: $number, person: $person, pizzas: $pizzas, receiverAddress: $address){\n                order{\n                    cancellable,\n                    status,\n                    _id\n                },\n                reason,\n                success\n            }\n        }\n    ": types.CreateOrderDocument,
 };
 
 /**
@@ -34,13 +34,14 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: '\nquery getPizzasCatalog {\n  getPizzasCatalog {\n    catalog{\n      description\n      id\n      img\n      ingredients{\n        name\n      }\n      name\n      sizes{\n        name\n        price\n      }\n      toppings{\n        cost\n        img\n        name\n      }\n    }\n  }\n}\n',
-): (typeof documents)['\nquery getPizzasCatalog {\n  getPizzasCatalog {\n    catalog{\n      description\n      id\n      img\n      ingredients{\n        name\n      }\n      name\n      sizes{\n        name\n        price\n      }\n      toppings{\n        cost\n        img\n        name\n      }\n    }\n  }\n}\n'];
+export function gql(source: "\nquery getPizzasCatalog {\n  getPizzasCatalog {\n    catalog{\n      description\n      id\n      img\n      ingredients{\n        name\n      }\n      name\n      sizes{\n        name\n        price\n      }\n      toppings{\n        cost\n        img\n        name\n      }\n    }\n  }\n}\n"): (typeof documents)["\nquery getPizzasCatalog {\n  getPizzasCatalog {\n    catalog{\n      description\n      id\n      img\n      ingredients{\n        name\n      }\n      name\n      sizes{\n        name\n        price\n      }\n      toppings{\n        cost\n        img\n        name\n      }\n    }\n  }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n        mutation createOrder($number: CreatePizzaPaymentDebitCardDto!, $person: CreatePizzaPaymentPersonDto!, $pizzas: [CreatePizzaPaymentPizzaDto!]!, $address: CreatePizzaPaymentAddressDto!){\n            createPizzaPayment(debitCard: $number, person: $person, pizzas: $pizzas, receiverAddress: $address){\n                order{\n                    cancellable,\n                    status,\n                    _id\n                },\n                reason,\n                success\n            }\n        }\n    "): (typeof documents)["\n        mutation createOrder($number: CreatePizzaPaymentDebitCardDto!, $person: CreatePizzaPaymentPersonDto!, $pizzas: [CreatePizzaPaymentPizzaDto!]!, $address: CreatePizzaPaymentAddressDto!){\n            createPizzaPayment(debitCard: $number, person: $person, pizzas: $pizzas, receiverAddress: $address){\n                order{\n                    cancellable,\n                    status,\n                    _id\n                },\n                reason,\n                success\n            }\n        }\n    "];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};
 }
 
-export type DocumentType<TDocumentNode extends DocumentNode<any, any>> =
-  TDocumentNode extends DocumentNode<infer TType, any> ? TType : never;
+export type DocumentType<TDocumentNode extends DocumentNode<any, any>> = TDocumentNode extends DocumentNode<  infer TType,  any>  ? TType  : never;

@@ -5,19 +5,15 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = {
-  [_ in K]?: never;
-};
-export type Incremental<T> =
-  | T
-  | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
 };
 
 export type BaseResponse = {
@@ -66,7 +62,7 @@ export type CinemaOrderInput = {
 
 export enum CinemaOrderStatus {
   Canceled = 'CANCELED',
-  Payed = 'PAYED',
+  Payed = 'PAYED'
 }
 
 export type CinemaPersonInput = {
@@ -204,7 +200,7 @@ export type DeliveryOption = {
 
 export enum DeliveryOptionType {
   Default = 'DEFAULT',
-  Express = 'EXPRESS',
+  Express = 'EXPRESS'
 }
 
 export type DeliveryOpttionInput = {
@@ -324,12 +320,12 @@ export enum DeliveryStatus {
   InProcessing = 'IN_PROCESSING',
   OnMyWay = 'ON_MY_WAY',
   Success = 'SUCCESS',
-  WaitingCourier = 'WAITING_COURIER',
+  WaitingCourier = 'WAITING_COURIER'
 }
 
 export enum Dough {
   Thick = 'THICK',
-  Thin = 'THIN',
+  Thin = 'THIN'
 }
 
 export type Film = {
@@ -369,7 +365,7 @@ export type FilmHallCellInput = {
 export enum FilmHallCellType {
   Blocked = 'BLOCKED',
   Comfort = 'COMFORT',
-  Econom = 'ECONOM',
+  Econom = 'ECONOM'
 }
 
 export type FilmHallInput = {
@@ -454,7 +450,7 @@ export enum Ingredient {
   Pickle = 'PICKLE',
   Pineapple = 'PINEAPPLE',
   Shrimps = 'SHRIMPS',
-  Tomato = 'TOMATO',
+  Tomato = 'TOMATO'
 }
 
 export type Mutation = {
@@ -471,23 +467,28 @@ export type Mutation = {
   updateProfile: UpdateProfileResponse;
 };
 
+
 export type MutationCalculateDeliveryArgs = {
   package: CalculateDeliveryPackageDto;
   receiverPoint: CalculateDeliveryPointDto;
   senderPoint: CalculateDeliveryPointDto;
 };
 
+
 export type MutationCancelCinemaOrderArgs = {
   orderId: Scalars['String']['input'];
 };
+
 
 export type MutationCancelDeliveryOrderArgs = {
   orderId: Scalars['String']['input'];
 };
 
+
 export type MutationCancelPizzaOrderArgs = {
   orderId: Scalars['String']['input'];
 };
+
 
 export type MutationCreateCinemaPaymentArgs = {
   debitCard: CreatePaymentDebitCardDto;
@@ -496,6 +497,7 @@ export type MutationCreateCinemaPaymentArgs = {
   seance: CreatePaymentSeanceDto;
   tickets: Array<CreatePaymentTicketsDto>;
 };
+
 
 export type MutationCreateDeliveryOrderArgs = {
   option: CreateDeliveryOrderDeliveryOptionDto;
@@ -508,9 +510,11 @@ export type MutationCreateDeliveryOrderArgs = {
   senderPoint: CreateDeliveryOrderPointDto;
 };
 
+
 export type MutationCreateOtpArgs = {
   phone: Scalars['String']['input'];
 };
+
 
 export type MutationCreatePizzaPaymentArgs = {
   debitCard: CreatePizzaPaymentDebitCardDto;
@@ -519,10 +523,12 @@ export type MutationCreatePizzaPaymentArgs = {
   receiverAddress: CreatePizzaPaymentAddressDto;
 };
 
+
 export type MutationSigninArgs = {
   code: Scalars['Float']['input'];
   phone: Scalars['String']['input'];
 };
+
 
 export type MutationUpdateProfileArgs = {
   phone: Scalars['String']['input'];
@@ -555,7 +561,7 @@ export type OtpResponse = {
 
 export enum Payer {
   Receiver = 'RECEIVER',
-  Sender = 'SENDER',
+  Sender = 'SENDER'
 }
 
 export type PaymentResponse = {
@@ -716,7 +722,7 @@ export enum PizzaStatus {
   InProcessing = 'IN_PROCESSING',
   OnMyWay = 'ON_MY_WAY',
   Success = 'SUCCESS',
-  WaitingCourier = 'WAITING_COURIER',
+  WaitingCourier = 'WAITING_COURIER'
 }
 
 export type PizzasResponse = {
@@ -728,7 +734,7 @@ export type PizzasResponse = {
 
 export enum Profession {
   Actor = 'ACTOR',
-  Director = 'DIRECTOR',
+  Director = 'DIRECTOR'
 }
 
 export type Query = {
@@ -747,17 +753,21 @@ export type Query = {
   session: SessionResponse;
 };
 
+
 export type QueryGetDeliveryOrderArgs = {
   orderId: Scalars['String']['input'];
 };
+
 
 export type QueryGetFilmArgs = {
   filmId: Scalars['String']['input'];
 };
 
+
 export type QueryGetFilmScheduleArgs = {
   filmId: Scalars['String']['input'];
 };
+
 
 export type QueryGetPizzaOrderArgs = {
   orderId: Scalars['String']['input'];
@@ -768,7 +778,7 @@ export enum Rating {
   Nc17 = 'NC17',
   Pg = 'PG',
   Pg13 = 'PG13',
-  R = 'R',
+  R = 'R'
 }
 
 export type Schedule = {
@@ -809,7 +819,7 @@ export type SignInResponse = {
 export enum Size {
   Large = 'LARGE',
   Medium = 'MEDIUM',
-  Small = 'SMALL',
+  Small = 'SMALL'
 }
 
 export type Ticket = {
@@ -874,95 +884,21 @@ export type UserInput = {
   phone: Scalars['String']['input'];
 };
 
-export type GetPizzasCatalogQueryVariables = Exact<{ [key: string]: never }>;
+export type GetPizzasCatalogQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type GetPizzasCatalogQuery = {
-  __typename?: 'Query';
-  getPizzasCatalog: {
-    __typename?: 'PizzasResponse';
-    catalog: Array<{
-      __typename?: 'Pizza';
-      description: string;
-      id: string;
-      img: string;
-      name: string;
-      ingredients: Array<{ __typename?: 'PizzaIngredient'; name: Ingredient }>;
-      sizes: Array<{ __typename?: 'PizzaSize'; name: Size; price: number }>;
-      toppings: Array<{
-        __typename?: 'PizzaIngredient';
-        cost: number;
-        img: string;
-        name: Ingredient;
-      }>;
-    }>;
-  };
-};
 
-export const GetPizzasCatalogDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'getPizzasCatalog' },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'getPizzasCatalog' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'catalog' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'img' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'ingredients' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [{ kind: 'Field', name: { kind: 'Name', value: 'name' } }],
-                        },
-                      },
-                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'sizes' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'price' } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'toppings' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'cost' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'img' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetPizzasCatalogQuery, GetPizzasCatalogQueryVariables>;
+export type GetPizzasCatalogQuery = { __typename?: 'Query', getPizzasCatalog: { __typename?: 'PizzasResponse', catalog: Array<{ __typename?: 'Pizza', description: string, id: string, img: string, name: string, ingredients: Array<{ __typename?: 'PizzaIngredient', name: Ingredient }>, sizes: Array<{ __typename?: 'PizzaSize', name: Size, price: number }>, toppings: Array<{ __typename?: 'PizzaIngredient', cost: number, img: string, name: Ingredient }> }> } };
+
+export type CreateOrderMutationVariables = Exact<{
+  number: CreatePizzaPaymentDebitCardDto;
+  person: CreatePizzaPaymentPersonDto;
+  pizzas: Array<CreatePizzaPaymentPizzaDto> | CreatePizzaPaymentPizzaDto;
+  address: CreatePizzaPaymentAddressDto;
+}>;
+
+
+export type CreateOrderMutation = { __typename?: 'Mutation', createPizzaPayment: { __typename?: 'PizzaPaymentResponse', reason?: string | null, success: boolean, order: { __typename?: 'PizzaOrder', cancellable: boolean, status: PizzaStatus, _id: string } } };
+
+
+export const GetPizzasCatalogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getPizzasCatalog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getPizzasCatalog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"catalog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"img"}},{"kind":"Field","name":{"kind":"Name","value":"ingredients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}}]}},{"kind":"Field","name":{"kind":"Name","value":"toppings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cost"}},{"kind":"Field","name":{"kind":"Name","value":"img"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetPizzasCatalogQuery, GetPizzasCatalogQueryVariables>;
+export const CreateOrderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createOrder"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreatePizzaPaymentDebitCardDto"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"person"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreatePizzaPaymentPersonDto"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pizzas"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreatePizzaPaymentPizzaDto"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"address"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreatePizzaPaymentAddressDto"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createPizzaPayment"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"debitCard"},"value":{"kind":"Variable","name":{"kind":"Name","value":"number"}}},{"kind":"Argument","name":{"kind":"Name","value":"person"},"value":{"kind":"Variable","name":{"kind":"Name","value":"person"}}},{"kind":"Argument","name":{"kind":"Name","value":"pizzas"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pizzas"}}},{"kind":"Argument","name":{"kind":"Name","value":"receiverAddress"},"value":{"kind":"Variable","name":{"kind":"Name","value":"address"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cancellable"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"_id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"success"}}]}}]}}]} as unknown as DocumentNode<CreateOrderMutation, CreateOrderMutationVariables>;

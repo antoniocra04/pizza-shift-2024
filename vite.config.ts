@@ -17,6 +17,7 @@ export default defineConfig({
       '@hooks': path.resolve(__dirname, './src/hooks'),
       '@icons': path.resolve(__dirname, './src/icons'),
       '@utils': path.resolve(__dirname, './src/utils'),
+      '@helpers': path.resolve(__dirname, './src/helpers'),
     },
   },
   css: {

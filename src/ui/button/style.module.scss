@@ -7,8 +7,19 @@
   font-size: $secondary-text-size;
   font-weight: 600;
   cursor: pointer;
+  transition: all .3s ease;
 
   &:hover {
     filter: grayscale(10%);
+  }
+}
+
+.__outline{
+  color: $secondary-text-color;
+  border: 1px $border-light solid;
+  background-color: $invert-text-color;
+
+  &:hover{
+    background-color: #F9FAFB;
   }
 }

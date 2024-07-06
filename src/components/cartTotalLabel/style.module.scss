@@ -1,0 +1,12 @@
+.cart_total_label{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+    margin-top: 24px;
+}
+
+.cart_total_label__text{
+    font-size: $title-h2-text-size;
+    color: $text-primary-color;
+}
