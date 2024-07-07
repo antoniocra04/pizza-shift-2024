@@ -5,7 +5,6 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  assetsInclude: ['**/*.woff'],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -17,24 +16,24 @@ export default defineConfig({
       '@hooks': path.resolve(__dirname, './src/hooks'),
       '@icons': path.resolve(__dirname, './src/icons'),
       '@utils': path.resolve(__dirname, './src/utils'),
-      '@helpers': path.resolve(__dirname, './src/helpers'),
-    },
+      '@helpers': path.resolve(__dirname, './src/helpers')
+    }
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: '@import "@constants/variables.scss";',
-      },
-    },
+        additionalData: '@import "@constants/variables.scss";'
+      }
+    }
   },
   preview: {
     port: 8081,
-    strictPort: true,
+    strictPort: true
   },
   server: {
     port: 8081,
     strictPort: true,
     host: true,
-    origin: 'http://0.0.0.0:8081',
-  },
+    origin: 'http://0.0.0.0:8081'
+  }
 });

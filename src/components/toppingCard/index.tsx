@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import classnames from 'classnames';
-import { Ingredient } from '@api/__generated__/graphql';
+import type { Ingredient } from '@api/__generated__/graphql';
+import { clsx } from 'clsx';
 
 import styles from './style.module.scss';
 
@@ -21,11 +21,11 @@ export const ToppingCard = ({ img, name, price, onClick }: ToppingCardProps) => 
 
   return (
     <div
-      className={classnames(styles.topping_card, isSelected ? styles.__active : '')}
+      className={clsx(styles.topping_card, isSelected ? styles.active : '')}
       onClick={handleSelect}
     >
       <div>
-        <img width={100} src={img} alt="" />
+        <img width={100} src={img} alt='' />
         <p className={styles.topping_text}>{name}</p>
       </div>
       <p className={styles.topping_price}>{price}₽</p>

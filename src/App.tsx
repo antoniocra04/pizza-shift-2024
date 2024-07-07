@@ -1,28 +1,34 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { MainPage } from './pages/main';
+
+import { AuthPage } from './pages/auth';
 import { CartPage } from './pages/cart';
 import { CreateOrderPage } from './pages/createOrder';
+import { MainPage } from './pages/main';
 import { PaymentPage } from './pages/payment';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainPage />,
+    element: <MainPage />
   },
   {
     path: '/cart',
-    element: <CartPage />,
+    element: <CartPage />
   },
   {
     path: '/createOrder',
-    element: <CreateOrderPage />,
+    element: <CreateOrderPage />
   },
   {
     path: '/payment',
-    element: <PaymentPage />,
+    element: <PaymentPage />
   },
+  {
+    path: '/auth',
+    element: <AuthPage />
+  }
 ]);
 
-export function App() {
+export const App = () => {
   return <RouterProvider router={router} />;
-}
+};

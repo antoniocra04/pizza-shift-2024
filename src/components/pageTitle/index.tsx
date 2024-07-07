@@ -1,9 +1,9 @@
-import styles from './style.module.scss'
+import styles from './style.module.scss';
 
 interface PageHeaderProps {
-    title: string
+  title: string;
 }
 
-export const PageTitle = ({title}: PageHeaderProps) => (
-    <h2 className={styles.page_title}>{title}</h2>
-)
+export const PageTitle = ({ title }: PageHeaderProps) => (
+  <h2 className={styles.page_title}>{title}</h2>
+);

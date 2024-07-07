@@ -1,0 +1,17 @@
+.auth_form {
+  display: flex;
+  flex-direction: column;
+  width: 428px;
+  row-gap: 24px;
+}
+
+.auth_form__item {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.auth_form__label {
+  font-size: $p-medium-size;
+  color: $text-primary-color;
+}

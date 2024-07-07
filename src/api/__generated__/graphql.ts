@@ -1,12 +1,13 @@
-/* eslint-disable */
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
-export type Maybe<T> = T | null;
-export type InputMaybe<T> = Maybe<T>;
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
+export type Maybe<T> = T;
+export type InputMaybe<T> = T;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -884,10 +885,12 @@ export type UserInput = {
   phone: Scalars['String']['input'];
 };
 
-export type GetPizzasCatalogQueryVariables = Exact<{ [key: string]: never; }>;
+export type CreateOtpMutationVariables = Exact<{
+  phone: Scalars['String']['input'];
+}>;
 
 
-export type GetPizzasCatalogQuery = { __typename?: 'Query', getPizzasCatalog: { __typename?: 'PizzasResponse', catalog: Array<{ __typename?: 'Pizza', description: string, id: string, img: string, name: string, ingredients: Array<{ __typename?: 'PizzaIngredient', name: Ingredient }>, sizes: Array<{ __typename?: 'PizzaSize', name: Size, price: number }>, toppings: Array<{ __typename?: 'PizzaIngredient', cost: number, img: string, name: Ingredient }> }> } };
+export type CreateOtpMutation = { __typename?: 'Mutation', createOtp: { __typename?: 'OtpResponse', reason?: string, success: boolean } };
 
 export type CreateOrderMutationVariables = Exact<{
   number: CreatePizzaPaymentDebitCardDto;
@@ -897,8 +900,148 @@ export type CreateOrderMutationVariables = Exact<{
 }>;
 
 
-export type CreateOrderMutation = { __typename?: 'Mutation', createPizzaPayment: { __typename?: 'PizzaPaymentResponse', reason?: string | null, success: boolean, order: { __typename?: 'PizzaOrder', cancellable: boolean, status: PizzaStatus, _id: string } } };
+export type CreateOrderMutation = { __typename?: 'Mutation', createPizzaPayment: { __typename?: 'PizzaPaymentResponse', reason?: string, success: boolean, order: { __typename?: 'PizzaOrder', cancellable: boolean, status: PizzaStatus, _id: string } } };
+
+export type GetPizzasCatalogQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export const GetPizzasCatalogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getPizzasCatalog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getPizzasCatalog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"catalog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"img"}},{"kind":"Field","name":{"kind":"Name","value":"ingredients"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}}]}},{"kind":"Field","name":{"kind":"Name","value":"toppings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cost"}},{"kind":"Field","name":{"kind":"Name","value":"img"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetPizzasCatalogQuery, GetPizzasCatalogQueryVariables>;
-export const CreateOrderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createOrder"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"number"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreatePizzaPaymentDebitCardDto"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"person"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreatePizzaPaymentPersonDto"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pizzas"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreatePizzaPaymentPizzaDto"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"address"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreatePizzaPaymentAddressDto"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createPizzaPayment"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"debitCard"},"value":{"kind":"Variable","name":{"kind":"Name","value":"number"}}},{"kind":"Argument","name":{"kind":"Name","value":"person"},"value":{"kind":"Variable","name":{"kind":"Name","value":"person"}}},{"kind":"Argument","name":{"kind":"Name","value":"pizzas"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pizzas"}}},{"kind":"Argument","name":{"kind":"Name","value":"receiverAddress"},"value":{"kind":"Variable","name":{"kind":"Name","value":"address"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cancellable"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"_id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"success"}}]}}]}}]} as unknown as DocumentNode<CreateOrderMutation, CreateOrderMutationVariables>;
+export type GetPizzasCatalogQuery = { __typename?: 'Query', getPizzasCatalog: { __typename?: 'PizzasResponse', catalog: Array<{ __typename?: 'Pizza', description: string, id: string, img: string, name: string, ingredients: Array<{ __typename?: 'PizzaIngredient', name: Ingredient }>, sizes: Array<{ __typename?: 'PizzaSize', name: Size, price: number }>, toppings: Array<{ __typename?: 'PizzaIngredient', cost: number, img: string, name: Ingredient }> }> } };
+
+
+export const CreateOtpDocument = gql`
+    mutation CreateOtp($phone: String!) {
+  createOtp(phone: $phone) {
+    reason
+    success
+  }
+}
+    `;
+export type CreateOtpMutationFn = Apollo.MutationFunction<CreateOtpMutation, CreateOtpMutationVariables>;
+
+/**
+ * __useCreateOtpMutation__
+ *
+ * To run a mutation, you first call `useCreateOtpMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOtpMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOtpMutation, { data, loading, error }] = useCreateOtpMutation({
+ *   variables: {
+ *      phone: // value for 'phone'
+ *   },
+ * });
+ */
+export function useCreateOtpMutation(baseOptions?: Apollo.MutationHookOptions<CreateOtpMutation, CreateOtpMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateOtpMutation, CreateOtpMutationVariables>(CreateOtpDocument, options);
+      }
+export type CreateOtpMutationHookResult = ReturnType<typeof useCreateOtpMutation>;
+export type CreateOtpMutationResult = Apollo.MutationResult<CreateOtpMutation>;
+export type CreateOtpMutationOptions = Apollo.BaseMutationOptions<CreateOtpMutation, CreateOtpMutationVariables>;
+export const CreateOrderDocument = gql`
+    mutation CreateOrder($number: CreatePizzaPaymentDebitCardDto!, $person: CreatePizzaPaymentPersonDto!, $pizzas: [CreatePizzaPaymentPizzaDto!]!, $address: CreatePizzaPaymentAddressDto!) {
+  createPizzaPayment(
+    debitCard: $number
+    person: $person
+    pizzas: $pizzas
+    receiverAddress: $address
+  ) {
+    order {
+      cancellable
+      status
+      _id
+    }
+    reason
+    success
+  }
+}
+    `;
+export type CreateOrderMutationFn = Apollo.MutationFunction<CreateOrderMutation, CreateOrderMutationVariables>;
+
+/**
+ * __useCreateOrderMutation__
+ *
+ * To run a mutation, you first call `useCreateOrderMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOrderMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOrderMutation, { data, loading, error }] = useCreateOrderMutation({
+ *   variables: {
+ *      number: // value for 'number'
+ *      person: // value for 'person'
+ *      pizzas: // value for 'pizzas'
+ *      address: // value for 'address'
+ *   },
+ * });
+ */
+export function useCreateOrderMutation(baseOptions?: Apollo.MutationHookOptions<CreateOrderMutation, CreateOrderMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateOrderMutation, CreateOrderMutationVariables>(CreateOrderDocument, options);
+      }
+export type CreateOrderMutationHookResult = ReturnType<typeof useCreateOrderMutation>;
+export type CreateOrderMutationResult = Apollo.MutationResult<CreateOrderMutation>;
+export type CreateOrderMutationOptions = Apollo.BaseMutationOptions<CreateOrderMutation, CreateOrderMutationVariables>;
+export const GetPizzasCatalogDocument = gql`
+    query getPizzasCatalog {
+  getPizzasCatalog {
+    catalog {
+      description
+      id
+      img
+      ingredients {
+        name
+      }
+      name
+      sizes {
+        name
+        price
+      }
+      toppings {
+        cost
+        img
+        name
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetPizzasCatalogQuery__
+ *
+ * To run a query within a React component, call `useGetPizzasCatalogQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPizzasCatalogQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPizzasCatalogQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetPizzasCatalogQuery(baseOptions?: Apollo.QueryHookOptions<GetPizzasCatalogQuery, GetPizzasCatalogQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPizzasCatalogQuery, GetPizzasCatalogQueryVariables>(GetPizzasCatalogDocument, options);
+      }
+export function useGetPizzasCatalogLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPizzasCatalogQuery, GetPizzasCatalogQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPizzasCatalogQuery, GetPizzasCatalogQueryVariables>(GetPizzasCatalogDocument, options);
+        }
+export function useGetPizzasCatalogSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetPizzasCatalogQuery, GetPizzasCatalogQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetPizzasCatalogQuery, GetPizzasCatalogQueryVariables>(GetPizzasCatalogDocument, options);
+        }
+export type GetPizzasCatalogQueryHookResult = ReturnType<typeof useGetPizzasCatalogQuery>;
+export type GetPizzasCatalogLazyQueryHookResult = ReturnType<typeof useGetPizzasCatalogLazyQuery>;
+export type GetPizzasCatalogSuspenseQueryHookResult = ReturnType<typeof useGetPizzasCatalogSuspenseQuery>;
+export type GetPizzasCatalogQueryResult = Apollo.QueryResult<GetPizzasCatalogQuery, GetPizzasCatalogQueryVariables>;

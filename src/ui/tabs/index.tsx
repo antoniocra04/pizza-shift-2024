@@ -11,7 +11,7 @@ interface TabsProps {
 export const Tabs = ({ tabs, setActive, active }: TabsProps) => (
   <div className={styles.tabs}>
     {tabs.map((tab, index) => (
-      <Tab title={tab} isActive={index == active} onClick={() => setActive(index)}/>
+      <Tab title={tab} isActive={index === active} onClick={() => setActive(index)} />
     ))}
   </div>
 );
