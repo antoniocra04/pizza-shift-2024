@@ -6,16 +6,16 @@ import { PageTitle } from '@components/pageTitle';
 import type { PaymentFormInputs } from '@components/paymentForm';
 import { PaymentForm } from '@components/paymentForm';
 import { PaymentSuccsessModal } from '@components/paymentSuccsessModal';
+import { useDispatch, useSelector } from '@store/baseHooks';
 import { clearCart } from '@store/cart/cartSlice';
-import { useTypedDispatch, useTypedSelector } from '@store/hooks/baseHooks';
 
 export const PaymentPage = () => {
   const [createOrder, { data }] = useCreateOrderMutation();
   const [isModalActive, setIsModalActive] = useState(false);
   const showModal = isModalActive && data;
-  const orderInfo = useTypedSelector((state) => state.orderInfo);
-  const cart = useTypedSelector((state) => state.cart);
-  const cartDispatch = useTypedDispatch();
+  const orderInfo = useSelector((state) => state.orderInfo);
+  const cart = useSelector((state) => state.cart);
+  const cartDispatch = useDispatch();
   const order = cart.products.map((product) => `${product.name} `).toString();
 
   const onSubmit: SubmitHandler<PaymentFormInputs> = (data) => {
@@ -64,6 +64,7 @@ export const PaymentPage = () => {
           order={order}
           price={cart.cartTotalPrice}
           address={`${orderInfo.address.street}, ${orderInfo.address.house}, ${orderInfo.address.apartment}`}
+          onClose={() => setIsModalActive(false)}
         />
       )}
     </PageLayout>

@@ -3,18 +3,18 @@ import type { PizzaIngredientInput } from '@api/__generated__/graphql';
 import { CartPizzaCard } from '@components/cartPizzaCard';
 import { PizzaModal } from '@components/pizzaModal';
 import { calculateTotalPrice } from '@helpers/calculateTotalPrice';
+import { useDispatch, useSelector } from '@store/baseHooks';
 import type { CartPizza } from '@store/cart/cartSlice';
 import { editProduct, removeProduct } from '@store/cart/cartSlice';
-import { useTypedDispatch, useTypedSelector } from '@store/hooks/baseHooks';
 
 import style from './style.module.scss';
 
 export const CartList = () => {
   const [isModalActive, setIsModalActive] = useState(false);
   const [selectedPizza, setSelectedPizza] = useState<CartPizza>();
-  const cartDispatch = useTypedDispatch();
+  const cartDispatch = useDispatch();
 
-  const products = useTypedSelector((state) => state.cart.products);
+  const products = useSelector((state) => state.cart.products);
   const showModal = isModalActive && selectedPizza;
 
   const selectPizza = (pizza: CartPizza) => {

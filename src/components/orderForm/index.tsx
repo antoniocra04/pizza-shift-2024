@@ -1,7 +1,7 @@
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useTypedDispatch } from '@store/hooks/baseHooks';
+import { useDispatch } from '@store/baseHooks';
 import { addInfo } from '@store/orderInfo/orderInfoSlice';
 import { Button } from '@ui/button';
 import { Input } from '@ui/input';
@@ -23,7 +23,7 @@ export const OrderForm = () => {
     formState: { errors }
   } = useForm<Inputs>();
   const navigate = useNavigate();
-  const orderInfoDispatch = useTypedDispatch();
+  const orderInfoDispatch = useDispatch();
 
   const onSubmit: SubmitHandler<Inputs> = ({ name, surname, phone, email, address }) => {
     const addressComponents = address.split(',');

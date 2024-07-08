@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { CrossIcon } from '@icons/CrossIcon';
+import { useDispatch } from '@store/baseHooks';
 import type { CartPizza } from '@store/cart/cartSlice';
 import { editProduct } from '@store/cart/cartSlice';
-import { useTypedDispatch } from '@store/hooks/baseHooks';
 import { Counter } from '@ui/counter';
 
 import styles from './style.module.scss';
@@ -15,7 +15,7 @@ interface CartPizzaCardProps {
 
 export const CartPizzaCard = ({ onChange, onDelete, pizza }: CartPizzaCardProps) => {
   const [count, setCount] = useState(pizza.count);
-  const cartDispatch = useTypedDispatch();
+  const cartDispatch = useDispatch();
 
   useEffect(() => {
     cartDispatch(editProduct({ ...pizza, count }));

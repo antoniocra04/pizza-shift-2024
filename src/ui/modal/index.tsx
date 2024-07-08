@@ -9,11 +9,13 @@ interface ModalProps {
 
 export const Modal = ({ children, onClose }: ModalProps) => (
   <div className={styles.modal_bg}>
-    <div className={styles.modal__cross}>
-      <button type='button' onClick={onClose}>
-        <CrossIcon />
-      </button>
+    <div className={styles.modal}>
+      <div className={styles.modal__cross}>
+        <button type='button' onClick={onClose}>
+          <CrossIcon />
+        </button>
+      </div>
+      {children}
     </div>
-    <div className={styles.modal}>{children}</div>
   </div>
 );

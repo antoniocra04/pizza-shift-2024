@@ -7,8 +7,8 @@ import {
 import { PizzaCard } from '@components/pizzaCard';
 import { PizzaModal } from '@components/pizzaModal';
 import { calculateTotalPrice } from '@helpers/calculateTotalPrice';
+import { useDispatch } from '@store/baseHooks';
 import { addProduct } from '@store/cart/cartSlice';
-import { useTypedDispatch } from '@store/hooks/baseHooks';
 
 import styles from './style.module.scss';
 
@@ -16,7 +16,7 @@ export const PizzaCatalog = () => {
   const { loading, data } = useGetPizzasCatalogQuery();
   const [selectedPizza, setSelectedPizza] = useState<PizzaInput>();
   const [isModalActive, setIsModalActive] = useState(false);
-  const cartDispatch = useTypedDispatch();
+  const cartDispatch = useDispatch();
   const showModal = isModalActive && data;
 
   const selectPizza = (pizzaId: string) => {

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import type { Ingredient, Pizza, PizzaIngredientInput } from '@api/__generated__/graphql';
-import { Modal } from '@components/modal';
 import { ToppingCard } from '@components/toppingCard';
 import { isIngredientExist } from '@helpers/isIngredientExist';
 import type { CartPizza } from '@store/cart/cartSlice';
 import { Button } from '@ui/button';
+import { Modal } from '@ui/modal';
 import { Tabs } from '@ui/tabs';
 
 import styles from './style.module.scss';

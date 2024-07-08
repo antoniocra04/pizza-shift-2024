@@ -56,7 +56,7 @@ export const PaymentForm = ({ onSubmit }: PaymentFormProps) => {
             <label htmlFor=''>CVV</label>
             <Input
               error={!!errors.cvv}
-              {...register('cvv', { required: true })}
+              {...register('cvv', { required: true, maxLength: 3 })}
               placeholder='000'
             />
           </div>

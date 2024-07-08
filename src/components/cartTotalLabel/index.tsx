@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { useTypedSelector } from '@store/hooks/baseHooks';
+import { useSelector } from '@store/baseHooks';
 import { Button } from '@ui/button';
 
 import styles from './style.module.scss';
 
 export const CartTotalLabel = () => {
-  const cartTotalPrice = useTypedSelector((state) => state.cart.cartTotalPrice);
+  const cartTotalPrice = useSelector((state) => state.cart.cartTotalPrice);
   const navigate = useNavigate();
 
   return (

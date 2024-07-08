@@ -12,8 +12,8 @@ const config: CodegenConfig = {
     }
   },
   ignoreNoDocuments: true,
-  config:{
-    'maybeValue': 'T'
+  config: {
+    maybeValue: 'T'
   }
 };
 

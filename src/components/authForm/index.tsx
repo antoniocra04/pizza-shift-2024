@@ -1,20 +1,21 @@
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { useCreateOtpMutation } from '@api/__generated__/graphql';
+import { useNavigate } from 'react-router-dom';
+import { useCreateOtpMutation, useSignInMutation } from '@api/__generated__/graphql';
+import { useTimer } from '@hooks/useTimer';
+import { useDispatch } from '@store/baseHooks';
+import { setToken } from '@store/user/userSlice';
 import { Button } from '@ui/button';
 import { Input } from '@ui/input';
 
 import styles from './style.module.scss';
 
-interface AuthFormInputs {
+type AuthFormInputs = {
   phone: string;
-}
+  code: string;
+};
 
-interface AuthFormProps {
-  onSubmit: SubmitHandler<AuthFormInputs>;
-}
-
-export const AuthForm = ({ onSubmit }: AuthFormProps) => {
+export const AuthForm = () => {
   const {
     register,
     handleSubmit,
@@ -22,11 +23,30 @@ export const AuthForm = ({ onSubmit }: AuthFormProps) => {
     formState: { errors }
   } = useForm<AuthFormInputs>();
   const [createOtp, { data }] = useCreateOtpMutation();
+  const [signIn, signInInfo] = useSignInMutation();
+  const [timer, setTimer] = useTimer(0);
+  const userDispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleCreateOtp = () => {
-    if (!errors.phone) {
+    if (!errors.phone && timer === 0) {
       createOtp({ variables: { phone: watch('phone') } });
+      setTimer(120);
     }
+  };
+
+  const onSubmit: SubmitHandler<AuthFormInputs> = (data) => {
+    signIn({
+      variables: {
+        phone: data.phone,
+        code: parseInt(data.code, 10)
+      }
+    }).then((res) => {
+      if (res.data) {
+        userDispatch(setToken(res.data.signin.token));
+        navigate('/');
+      }
+    });
   };
 
   return (
@@ -41,7 +61,22 @@ export const AuthForm = ({ onSubmit }: AuthFormProps) => {
           placeholder='Телефон'
         />
       </div>
-      {data ? <Button>Войти</Button> : <Button onClick={handleCreateOtp}>Продолжить</Button>}
+      {data ? (
+        <>
+          <Input
+            error={!!errors.code}
+            {...register('code', { required: true, pattern: /^[0-9]*$/g })}
+            placeholder='Код'
+          />
+          {signInInfo.error ? <p className='auth__input-error'>Неверный код</p> : ''}
+          <Button type='submit'>Войти</Button>
+          <button type='button' onClick={handleCreateOtp} className={styles.auth_form__resend_code}>
+            Запросить код {timer > 0 ? `повторно можно через ${timer} секунд` : ''}{' '}
+          </button>
+        </>
+      ) : (
+        <Button onClick={handleCreateOtp}>Продолжить</Button>
+      )}
     </form>
   );
 };

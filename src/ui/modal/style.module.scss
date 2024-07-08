@@ -26,4 +26,9 @@
 .modal__cross {
   display: flex;
   justify-content: end;
+
+  button{
+    background-color: transparent;
+    cursor: pointer;
+  }
 }
