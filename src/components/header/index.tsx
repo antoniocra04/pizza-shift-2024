@@ -17,13 +17,13 @@ export const Header = () => {
         <nav className={styles.header_nav}>
           <ul className={styles.header_nav__list}>
             <li className={styles.header_nav__list_item}>
-              <Link to='/'>
+              <Link to={user.token ? '/user' : '/auth'}>
                 <UserIcon />
                 Профиль
               </Link>
             </li>
             <li className={styles.header_nav__list_item}>
-              <Link to='/orders'>
+              <Link to={user.token ? '/orders' : '/auth'}>
                 <TimeIcon />
                 Заказы
               </Link>
