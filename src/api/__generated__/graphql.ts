@@ -885,12 +885,12 @@ export type UserInput = {
   phone: Scalars['String']['input'];
 };
 
-export type CreateOtpMutationVariables = Exact<{
-  phone: Scalars['String']['input'];
+export type CancelOrderMutationVariables = Exact<{
+  orderId: Scalars['String']['input'];
 }>;
 
 
-export type CreateOtpMutation = { __typename?: 'Mutation', createOtp: { __typename?: 'OtpResponse', reason?: string, success: boolean } };
+export type CancelOrderMutation = { __typename?: 'Mutation', cancelPizzaOrder: { __typename?: 'BaseResponse', reason?: string, success: boolean } };
 
 export type CreateOrderMutationVariables = Exact<{
   number: CreatePizzaPaymentDebitCardDto;
@@ -902,10 +902,12 @@ export type CreateOrderMutationVariables = Exact<{
 
 export type CreateOrderMutation = { __typename?: 'Mutation', createPizzaPayment: { __typename?: 'PizzaPaymentResponse', reason?: string, success: boolean, order: { __typename?: 'PizzaOrder', cancellable: boolean, status: PizzaStatus, _id: string } } };
 
-export type GetPizzasCatalogQueryVariables = Exact<{ [key: string]: never; }>;
+export type CreateOtpMutationVariables = Exact<{
+  phone: Scalars['String']['input'];
+}>;
 
 
-export type GetPizzasCatalogQuery = { __typename?: 'Query', getPizzasCatalog: { __typename?: 'PizzasResponse', catalog: Array<{ __typename?: 'Pizza', description: string, id: string, img: string, name: string, ingredients: Array<{ __typename?: 'PizzaIngredient', name: Ingredient }>, sizes: Array<{ __typename?: 'PizzaSize', name: Size, price: number }>, toppings: Array<{ __typename?: 'PizzaIngredient', cost: number, img: string, name: Ingredient }> }> } };
+export type CreateOtpMutation = { __typename?: 'Mutation', createOtp: { __typename?: 'OtpResponse', reason?: string, success: boolean } };
 
 export type SignInMutationVariables = Exact<{
   code: Scalars['Float']['input'];
@@ -915,11 +917,6 @@ export type SignInMutationVariables = Exact<{
 
 export type SignInMutation = { __typename?: 'Mutation', signin: { __typename?: 'SignInResponse', reason?: string, success: boolean, token: string } };
 
-export type GetPizzaOrdersQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetPizzaOrdersQuery = { __typename?: 'Query', getPizzaOrders: { __typename?: 'PizzaOrdersResponse', orders: Array<{ __typename?: 'PizzaOrder', _id: string, cancellable: boolean, status: PizzaStatus, receiverAddress: { __typename?: 'PizzaAddress', apartment: string, comment?: string, house: string, street: string } }> } };
-
 export type GetPizzaOrderQueryVariables = Exact<{
   orderId: Scalars['String']['input'];
 }>;
@@ -927,48 +924,64 @@ export type GetPizzaOrderQueryVariables = Exact<{
 
 export type GetPizzaOrderQuery = { __typename?: 'Query', getPizzaOrder: { __typename?: 'PizzaOrderResponse', order: { __typename?: 'PizzaOrder', _id: string, cancellable: boolean, status: PizzaStatus, receiverAddress: { __typename?: 'PizzaAddress', apartment: string, comment?: string, house: string, street: string } } } };
 
-export type CancelOrderMutationVariables = Exact<{
-  orderId: Scalars['String']['input'];
+export type GetPizzaOrdersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPizzaOrdersQuery = { __typename?: 'Query', getPizzaOrders: { __typename?: 'PizzaOrdersResponse', orders: Array<{ __typename?: 'PizzaOrder', _id: string, cancellable: boolean, status: PizzaStatus, receiverAddress: { __typename?: 'PizzaAddress', apartment: string, comment?: string, house: string, street: string } }> } };
+
+export type GetPizzasCatalogQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPizzasCatalogQuery = { __typename?: 'Query', getPizzasCatalog: { __typename?: 'PizzasResponse', catalog: Array<{ __typename?: 'Pizza', description: string, id: string, img: string, name: string, ingredients: Array<{ __typename?: 'PizzaIngredient', name: Ingredient }>, sizes: Array<{ __typename?: 'PizzaSize', name: Size, price: number }>, toppings: Array<{ __typename?: 'PizzaIngredient', cost: number, img: string, name: Ingredient }> }> } };
+
+export type GetSessionQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSessionQuery = { __typename?: 'Query', session: { __typename?: 'SessionResponse', user: { __typename?: 'User', _id: string, city?: string, email?: string, firstname?: string, lastname?: string, middlename?: string, phone: string } } };
+
+export type UpdateProfileMutationVariables = Exact<{
+  phone: Scalars['String']['input'];
+  profile: UpdateProfileProfileDto;
 }>;
 
 
-export type CancelOrderMutation = { __typename?: 'Mutation', cancelPizzaOrder: { __typename?: 'BaseResponse', reason?: string, success: boolean } };
+export type UpdateProfileMutation = { __typename?: 'Mutation', updateProfile: { __typename?: 'UpdateProfileResponse', user: { __typename?: 'User', _id: string, city?: string, email?: string, firstname?: string, lastname?: string, middlename?: string, phone: string } } };
 
 
-export const CreateOtpDocument = gql`
-    mutation CreateOtp($phone: String!) {
-  createOtp(phone: $phone) {
+export const CancelOrderDocument = gql`
+    mutation CancelOrder($orderId: String!) {
+  cancelPizzaOrder(orderId: $orderId) {
     reason
     success
   }
 }
     `;
-export type CreateOtpMutationFn = Apollo.MutationFunction<CreateOtpMutation, CreateOtpMutationVariables>;
+export type CancelOrderMutationFn = Apollo.MutationFunction<CancelOrderMutation, CancelOrderMutationVariables>;
 
 /**
- * __useCreateOtpMutation__
+ * __useCancelOrderMutation__
  *
- * To run a mutation, you first call `useCreateOtpMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateOtpMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCancelOrderMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCancelOrderMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [createOtpMutation, { data, loading, error }] = useCreateOtpMutation({
+ * const [cancelOrderMutation, { data, loading, error }] = useCancelOrderMutation({
  *   variables: {
- *      phone: // value for 'phone'
+ *      orderId: // value for 'orderId'
  *   },
  * });
  */
-export function useCreateOtpMutation(baseOptions?: Apollo.MutationHookOptions<CreateOtpMutation, CreateOtpMutationVariables>) {
+export function useCancelOrderMutation(baseOptions?: Apollo.MutationHookOptions<CancelOrderMutation, CancelOrderMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateOtpMutation, CreateOtpMutationVariables>(CreateOtpDocument, options);
+        return Apollo.useMutation<CancelOrderMutation, CancelOrderMutationVariables>(CancelOrderDocument, options);
       }
-export type CreateOtpMutationHookResult = ReturnType<typeof useCreateOtpMutation>;
-export type CreateOtpMutationResult = Apollo.MutationResult<CreateOtpMutation>;
-export type CreateOtpMutationOptions = Apollo.BaseMutationOptions<CreateOtpMutation, CreateOtpMutationVariables>;
+export type CancelOrderMutationHookResult = ReturnType<typeof useCancelOrderMutation>;
+export type CancelOrderMutationResult = Apollo.MutationResult<CancelOrderMutation>;
+export type CancelOrderMutationOptions = Apollo.BaseMutationOptions<CancelOrderMutation, CancelOrderMutationVariables>;
 export const CreateOrderDocument = gql`
     mutation CreateOrder($number: CreatePizzaPaymentDebitCardDto!, $person: CreatePizzaPaymentPersonDto!, $pizzas: [CreatePizzaPaymentPizzaDto!]!, $address: CreatePizzaPaymentAddressDto!) {
   createPizzaPayment(
@@ -1016,6 +1029,175 @@ export function useCreateOrderMutation(baseOptions?: Apollo.MutationHookOptions<
 export type CreateOrderMutationHookResult = ReturnType<typeof useCreateOrderMutation>;
 export type CreateOrderMutationResult = Apollo.MutationResult<CreateOrderMutation>;
 export type CreateOrderMutationOptions = Apollo.BaseMutationOptions<CreateOrderMutation, CreateOrderMutationVariables>;
+export const CreateOtpDocument = gql`
+    mutation CreateOtp($phone: String!) {
+  createOtp(phone: $phone) {
+    reason
+    success
+  }
+}
+    `;
+export type CreateOtpMutationFn = Apollo.MutationFunction<CreateOtpMutation, CreateOtpMutationVariables>;
+
+/**
+ * __useCreateOtpMutation__
+ *
+ * To run a mutation, you first call `useCreateOtpMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOtpMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOtpMutation, { data, loading, error }] = useCreateOtpMutation({
+ *   variables: {
+ *      phone: // value for 'phone'
+ *   },
+ * });
+ */
+export function useCreateOtpMutation(baseOptions?: Apollo.MutationHookOptions<CreateOtpMutation, CreateOtpMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateOtpMutation, CreateOtpMutationVariables>(CreateOtpDocument, options);
+      }
+export type CreateOtpMutationHookResult = ReturnType<typeof useCreateOtpMutation>;
+export type CreateOtpMutationResult = Apollo.MutationResult<CreateOtpMutation>;
+export type CreateOtpMutationOptions = Apollo.BaseMutationOptions<CreateOtpMutation, CreateOtpMutationVariables>;
+export const SignInDocument = gql`
+    mutation SignIn($code: Float!, $phone: String!) {
+  signin(code: $code, phone: $phone) {
+    reason
+    success
+    token
+  }
+}
+    `;
+export type SignInMutationFn = Apollo.MutationFunction<SignInMutation, SignInMutationVariables>;
+
+/**
+ * __useSignInMutation__
+ *
+ * To run a mutation, you first call `useSignInMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSignInMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [signInMutation, { data, loading, error }] = useSignInMutation({
+ *   variables: {
+ *      code: // value for 'code'
+ *      phone: // value for 'phone'
+ *   },
+ * });
+ */
+export function useSignInMutation(baseOptions?: Apollo.MutationHookOptions<SignInMutation, SignInMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SignInMutation, SignInMutationVariables>(SignInDocument, options);
+      }
+export type SignInMutationHookResult = ReturnType<typeof useSignInMutation>;
+export type SignInMutationResult = Apollo.MutationResult<SignInMutation>;
+export type SignInMutationOptions = Apollo.BaseMutationOptions<SignInMutation, SignInMutationVariables>;
+export const GetPizzaOrderDocument = gql`
+    query getPizzaOrder($orderId: String!) {
+  getPizzaOrder(orderId: $orderId) {
+    order {
+      _id
+      cancellable
+      receiverAddress {
+        apartment
+        comment
+        house
+        street
+      }
+      status
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetPizzaOrderQuery__
+ *
+ * To run a query within a React component, call `useGetPizzaOrderQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPizzaOrderQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPizzaOrderQuery({
+ *   variables: {
+ *      orderId: // value for 'orderId'
+ *   },
+ * });
+ */
+export function useGetPizzaOrderQuery(baseOptions: Apollo.QueryHookOptions<GetPizzaOrderQuery, GetPizzaOrderQueryVariables> & ({ variables: GetPizzaOrderQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPizzaOrderQuery, GetPizzaOrderQueryVariables>(GetPizzaOrderDocument, options);
+      }
+export function useGetPizzaOrderLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPizzaOrderQuery, GetPizzaOrderQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPizzaOrderQuery, GetPizzaOrderQueryVariables>(GetPizzaOrderDocument, options);
+        }
+export function useGetPizzaOrderSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetPizzaOrderQuery, GetPizzaOrderQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetPizzaOrderQuery, GetPizzaOrderQueryVariables>(GetPizzaOrderDocument, options);
+        }
+export type GetPizzaOrderQueryHookResult = ReturnType<typeof useGetPizzaOrderQuery>;
+export type GetPizzaOrderLazyQueryHookResult = ReturnType<typeof useGetPizzaOrderLazyQuery>;
+export type GetPizzaOrderSuspenseQueryHookResult = ReturnType<typeof useGetPizzaOrderSuspenseQuery>;
+export type GetPizzaOrderQueryResult = Apollo.QueryResult<GetPizzaOrderQuery, GetPizzaOrderQueryVariables>;
+export const GetPizzaOrdersDocument = gql`
+    query getPizzaOrders {
+  getPizzaOrders {
+    orders {
+      _id
+      cancellable
+      receiverAddress {
+        apartment
+        comment
+        house
+        street
+      }
+      status
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetPizzaOrdersQuery__
+ *
+ * To run a query within a React component, call `useGetPizzaOrdersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPizzaOrdersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPizzaOrdersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetPizzaOrdersQuery(baseOptions?: Apollo.QueryHookOptions<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>(GetPizzaOrdersDocument, options);
+      }
+export function useGetPizzaOrdersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>(GetPizzaOrdersDocument, options);
+        }
+export function useGetPizzaOrdersSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>(GetPizzaOrdersDocument, options);
+        }
+export type GetPizzaOrdersQueryHookResult = ReturnType<typeof useGetPizzaOrdersQuery>;
+export type GetPizzaOrdersLazyQueryHookResult = ReturnType<typeof useGetPizzaOrdersLazyQuery>;
+export type GetPizzaOrdersSuspenseQueryHookResult = ReturnType<typeof useGetPizzaOrdersSuspenseQuery>;
+export type GetPizzaOrdersQueryResult = Apollo.QueryResult<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>;
 export const GetPizzasCatalogDocument = gql`
     query getPizzasCatalog {
   getPizzasCatalog {
@@ -1072,172 +1254,92 @@ export type GetPizzasCatalogQueryHookResult = ReturnType<typeof useGetPizzasCata
 export type GetPizzasCatalogLazyQueryHookResult = ReturnType<typeof useGetPizzasCatalogLazyQuery>;
 export type GetPizzasCatalogSuspenseQueryHookResult = ReturnType<typeof useGetPizzasCatalogSuspenseQuery>;
 export type GetPizzasCatalogQueryResult = Apollo.QueryResult<GetPizzasCatalogQuery, GetPizzasCatalogQueryVariables>;
-export const SignInDocument = gql`
-    mutation SignIn($code: Float!, $phone: String!) {
-  signin(code: $code, phone: $phone) {
-    reason
-    success
-    token
+export const GetSessionDocument = gql`
+    query GetSession {
+  session {
+    user {
+      _id
+      city
+      email
+      firstname
+      lastname
+      middlename
+      phone
+    }
   }
 }
     `;
-export type SignInMutationFn = Apollo.MutationFunction<SignInMutation, SignInMutationVariables>;
 
 /**
- * __useSignInMutation__
+ * __useGetSessionQuery__
  *
- * To run a mutation, you first call `useSignInMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useSignInMutation` returns a tuple that includes:
+ * To run a query within a React component, call `useGetSessionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSessionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSessionQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetSessionQuery(baseOptions?: Apollo.QueryHookOptions<GetSessionQuery, GetSessionQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSessionQuery, GetSessionQueryVariables>(GetSessionDocument, options);
+      }
+export function useGetSessionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSessionQuery, GetSessionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSessionQuery, GetSessionQueryVariables>(GetSessionDocument, options);
+        }
+export function useGetSessionSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetSessionQuery, GetSessionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetSessionQuery, GetSessionQueryVariables>(GetSessionDocument, options);
+        }
+export type GetSessionQueryHookResult = ReturnType<typeof useGetSessionQuery>;
+export type GetSessionLazyQueryHookResult = ReturnType<typeof useGetSessionLazyQuery>;
+export type GetSessionSuspenseQueryHookResult = ReturnType<typeof useGetSessionSuspenseQuery>;
+export type GetSessionQueryResult = Apollo.QueryResult<GetSessionQuery, GetSessionQueryVariables>;
+export const UpdateProfileDocument = gql`
+    mutation UpdateProfile($phone: String!, $profile: UpdateProfileProfileDto!) {
+  updateProfile(phone: $phone, profile: $profile) {
+    user {
+      _id
+      city
+      email
+      firstname
+      lastname
+      middlename
+      phone
+    }
+  }
+}
+    `;
+export type UpdateProfileMutationFn = Apollo.MutationFunction<UpdateProfileMutation, UpdateProfileMutationVariables>;
+
+/**
+ * __useUpdateProfileMutation__
+ *
+ * To run a mutation, you first call `useUpdateProfileMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateProfileMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [signInMutation, { data, loading, error }] = useSignInMutation({
+ * const [updateProfileMutation, { data, loading, error }] = useUpdateProfileMutation({
  *   variables: {
- *      code: // value for 'code'
  *      phone: // value for 'phone'
+ *      profile: // value for 'profile'
  *   },
  * });
  */
-export function useSignInMutation(baseOptions?: Apollo.MutationHookOptions<SignInMutation, SignInMutationVariables>) {
+export function useUpdateProfileMutation(baseOptions?: Apollo.MutationHookOptions<UpdateProfileMutation, UpdateProfileMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<SignInMutation, SignInMutationVariables>(SignInDocument, options);
+        return Apollo.useMutation<UpdateProfileMutation, UpdateProfileMutationVariables>(UpdateProfileDocument, options);
       }
-export type SignInMutationHookResult = ReturnType<typeof useSignInMutation>;
-export type SignInMutationResult = Apollo.MutationResult<SignInMutation>;
-export type SignInMutationOptions = Apollo.BaseMutationOptions<SignInMutation, SignInMutationVariables>;
-export const GetPizzaOrdersDocument = gql`
-    query getPizzaOrders {
-  getPizzaOrders {
-    orders {
-      _id
-      cancellable
-      receiverAddress {
-        apartment
-        comment
-        house
-        street
-      }
-      status
-    }
-  }
-}
-    `;
-
-/**
- * __useGetPizzaOrdersQuery__
- *
- * To run a query within a React component, call `useGetPizzaOrdersQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetPizzaOrdersQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetPizzaOrdersQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetPizzaOrdersQuery(baseOptions?: Apollo.QueryHookOptions<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>(GetPizzaOrdersDocument, options);
-      }
-export function useGetPizzaOrdersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>(GetPizzaOrdersDocument, options);
-        }
-export function useGetPizzaOrdersSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>(GetPizzaOrdersDocument, options);
-        }
-export type GetPizzaOrdersQueryHookResult = ReturnType<typeof useGetPizzaOrdersQuery>;
-export type GetPizzaOrdersLazyQueryHookResult = ReturnType<typeof useGetPizzaOrdersLazyQuery>;
-export type GetPizzaOrdersSuspenseQueryHookResult = ReturnType<typeof useGetPizzaOrdersSuspenseQuery>;
-export type GetPizzaOrdersQueryResult = Apollo.QueryResult<GetPizzaOrdersQuery, GetPizzaOrdersQueryVariables>;
-export const GetPizzaOrderDocument = gql`
-    query getPizzaOrder($orderId: String!) {
-  getPizzaOrder(orderId: $orderId) {
-    order {
-      _id
-      cancellable
-      receiverAddress {
-        apartment
-        comment
-        house
-        street
-      }
-      status
-    }
-  }
-}
-    `;
-
-/**
- * __useGetPizzaOrderQuery__
- *
- * To run a query within a React component, call `useGetPizzaOrderQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetPizzaOrderQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetPizzaOrderQuery({
- *   variables: {
- *      orderId: // value for 'orderId'
- *   },
- * });
- */
-export function useGetPizzaOrderQuery(baseOptions: Apollo.QueryHookOptions<GetPizzaOrderQuery, GetPizzaOrderQueryVariables> & ({ variables: GetPizzaOrderQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetPizzaOrderQuery, GetPizzaOrderQueryVariables>(GetPizzaOrderDocument, options);
-      }
-export function useGetPizzaOrderLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPizzaOrderQuery, GetPizzaOrderQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetPizzaOrderQuery, GetPizzaOrderQueryVariables>(GetPizzaOrderDocument, options);
-        }
-export function useGetPizzaOrderSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetPizzaOrderQuery, GetPizzaOrderQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetPizzaOrderQuery, GetPizzaOrderQueryVariables>(GetPizzaOrderDocument, options);
-        }
-export type GetPizzaOrderQueryHookResult = ReturnType<typeof useGetPizzaOrderQuery>;
-export type GetPizzaOrderLazyQueryHookResult = ReturnType<typeof useGetPizzaOrderLazyQuery>;
-export type GetPizzaOrderSuspenseQueryHookResult = ReturnType<typeof useGetPizzaOrderSuspenseQuery>;
-export type GetPizzaOrderQueryResult = Apollo.QueryResult<GetPizzaOrderQuery, GetPizzaOrderQueryVariables>;
-export const CancelOrderDocument = gql`
-    mutation CancelOrder($orderId: String!) {
-  cancelPizzaOrder(orderId: $orderId) {
-    reason
-    success
-  }
-}
-    `;
-export type CancelOrderMutationFn = Apollo.MutationFunction<CancelOrderMutation, CancelOrderMutationVariables>;
-
-/**
- * __useCancelOrderMutation__
- *
- * To run a mutation, you first call `useCancelOrderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCancelOrderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [cancelOrderMutation, { data, loading, error }] = useCancelOrderMutation({
- *   variables: {
- *      orderId: // value for 'orderId'
- *   },
- * });
- */
-export function useCancelOrderMutation(baseOptions?: Apollo.MutationHookOptions<CancelOrderMutation, CancelOrderMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CancelOrderMutation, CancelOrderMutationVariables>(CancelOrderDocument, options);
-      }
-export type CancelOrderMutationHookResult = ReturnType<typeof useCancelOrderMutation>;
-export type CancelOrderMutationResult = Apollo.MutationResult<CancelOrderMutation>;
-export type CancelOrderMutationOptions = Apollo.BaseMutationOptions<CancelOrderMutation, CancelOrderMutationVariables>;
+export type UpdateProfileMutationHookResult = ReturnType<typeof useUpdateProfileMutation>;
+export type UpdateProfileMutationResult = Apollo.MutationResult<UpdateProfileMutation>;
+export type UpdateProfileMutationOptions = Apollo.BaseMutationOptions<UpdateProfileMutation, UpdateProfileMutationVariables>;

@@ -9,6 +9,7 @@ import { MainPage } from './pages/main';
 import { OrderPage } from './pages/order';
 import { OrdersPage } from './pages/orders';
 import { PaymentPage } from './pages/payment';
+import { ProfilePage } from './pages/profile';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: '/order/:orderId',
     element: <OrderPage />
+  },
+  {
+    path: '/profile',
+    element: <ProfilePage />
   }
 ]);
 

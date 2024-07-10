@@ -17,7 +17,7 @@ export const Header = () => {
         <nav className={styles.header_nav}>
           <ul className={styles.header_nav__list}>
             <li className={styles.header_nav__list_item}>
-              <Link to={user.token ? '/user' : '/auth'}>
+              <Link to={user.token ? '/profile' : '/auth'}>
                 <UserIcon />
                 Профиль
               </Link>
