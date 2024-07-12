@@ -1,2 +1,3 @@
-declare module '*.module.scss';
 import 'vite/client';
+
+declare module '*.module.scss';

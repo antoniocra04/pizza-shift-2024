@@ -1,25 +1,27 @@
 .button {
   padding: 16px 32px;
-  background-color: $primary;
-  color: $invert-text-color;
   border-radius: 16px;
-  border: none;
   font-size: $secondary-text-size;
   font-weight: 600;
   cursor: pointer;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
     filter: grayscale(10%);
   }
 }
 
-.__outline{
+.primary{
+  background-color: $primary;
+  color: $invert-text-color;
+}
+
+.outline {
   color: $secondary-text-color;
   border: 1px $border-light solid;
   background-color: $invert-text-color;
 
-  &:hover{
-    background-color: #F9FAFB;
+  &:hover {
+    background-color: #f9fafb;
   }
 }

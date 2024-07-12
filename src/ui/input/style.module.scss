@@ -1,17 +1,21 @@
 .input {
-	color: $text-primary-color;
-	border: 1px $border-light solid;
-	border-radius: 8px;
-	padding: 12px;
-	background-color: $invert-text-color;
-	font-weight: 400;
-	font-size: $secondary-text-size;
+  color: $text-primary-color;
+  border: 1px $border-light solid;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: $invert-text-color;
+  font-weight: 400;
+  font-size: $secondary-text-size;
 
-	&:focus {
-		outline: $primary;
-	}
+  &:focus {
+    outline: $primary;
+  }
+
+  &:disabled{
+    background-color: $border-extra-light;
+  }
 }
 
-.__error{
-	border: 1px red solid;
+.error {
+  border: 1px red solid;
 }

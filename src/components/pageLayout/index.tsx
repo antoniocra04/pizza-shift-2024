@@ -6,11 +6,9 @@ interface PageLayoutProps {
   children: React.ReactNode;
 }
 
-export const PageLayout = ({ children }: PageLayoutProps) => {
-  return (
-    <>
-      <Header />
-      <main className={styles.main}>{children}</main>
-    </>
-  );
-};
+export const PageLayout = ({ children }: PageLayoutProps) => (
+  <>
+    <Header />
+    <main className={styles.main}>{children}</main>
+  </>
+);

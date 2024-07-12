@@ -1,17 +1,17 @@
 import type { ComponentPropsWithoutRef } from 'react';
-import classNames from 'classnames'
+import { clsx } from 'clsx';
+
 import styles from './style.module.scss';
+
+type ButtonVariant = 'primary' | 'outlined';
 
 interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   children?: React.ReactNode;
-  outline?: boolean
+  variant?: ButtonVariant;
 }
 
-export const Button = (props: ButtonProps) => {
-  const buttonStyles = classNames(styles.button, props.outline && styles.__outline)
-  return (
-    <button {...props} className={buttonStyles}>
-      {props.children}
-    </button>
-  );
-};
+export const Button = ({ children, variant = 'primary', className, ...props }: ButtonProps) => (
+  <button className={clsx(styles.button, styles[variant], className)} type='button' {...props}>
+    {children}
+  </button>
+);

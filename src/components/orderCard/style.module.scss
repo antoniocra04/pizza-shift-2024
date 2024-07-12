@@ -1,0 +1,61 @@
+.order_card{
+    display: flex;
+    column-gap: 24px;
+    align-items: center;
+    border: 1px $border-extra-light solid;
+    border-width: 1px 0 0 0;
+    padding-top: 24px;
+
+    p{
+        font-size: $secondary-text-size;
+        color: $text-primary-color;
+    }
+
+    p:nth-child(2){
+        width: 185px;
+    }
+
+    p:nth-child(3){
+        width: 300px;
+    }
+
+    p:nth-child(4){
+        width: 160px;
+    }
+}
+
+.order_card__button{
+    font-size: $p-regular-size;
+    color: $text-quartenery-color;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 24px;
+    width: 100px;
+    background-color: transparent;
+}
+
+.orders__status_round{
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+}
+
+.CANCELED{
+    background-color: red;
+}
+
+.IN_PROCESSING{
+    background-color: orange;
+}
+
+.ON_MY_WAY{
+    background-color: darkviolet;
+}
+
+.SUCCESS{
+    background-color: lightgreen;
+}
+
+.WAITING_COURIER{
+    background-color: cornflowerblue;
+}

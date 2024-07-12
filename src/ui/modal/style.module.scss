@@ -22,3 +22,13 @@
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
   padding: 40px;
 }
+
+.modal__cross {
+  display: flex;
+  justify-content: end;
+
+  button{
+    background-color: transparent;
+    cursor: pointer;
+  }
+}

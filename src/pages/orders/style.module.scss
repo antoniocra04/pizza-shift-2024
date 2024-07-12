@@ -1,0 +1,28 @@
+.orders_columns_info{
+    display: flex;
+    column-gap: 24px;
+    margin-bottom: 24px;
+
+    p{
+        font-size: $p-medium-size;
+        color: $text-tertiary-color;
+    }
+
+    p:nth-child(1){
+        width: 220px;
+    }
+
+    p:nth-child(2){
+        width: 300px;
+    }
+
+    p:nth-child(3){
+        width: 160px;
+    }
+}
+
+.orders_list{
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+}

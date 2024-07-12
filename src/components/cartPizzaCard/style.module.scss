@@ -1,40 +1,41 @@
-.cart_pizza_card{
-    display: flex;
-    align-items: center;
-    column-gap: 24px;
-    height: 65px;
+.cart_pizza_card {
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
+  height: 65px;
 }
 
-.cart_pizza_card__name{
-    font-size: $body-primary-text-size;
-    color: $text-primary-color;
-    font-weight: 500;
-    width: 120px;
+.cart_pizza_card__name {
+  font-size: $body-primary-text-size;
+  color: $text-primary-color;
+  font-weight: 500;
+  width: 120px;
 }
 
-.cart_pizza_card__ingredients{
-    font-size: $p-regular-size;
-    color: $text-primary-color;
-    font-weight: 400;
-    width: 280px;
+.cart_pizza_card__ingredients {
+  font-size: $p-regular-size;
+  color: $text-primary-color;
+  font-weight: 400;
+  width: 280px;
 }
 
-.cart_pizza_card__change{
-    font-size: $p-regular-size;
-    color: $text-quartenery-color;
-    text-decoration: underline;
-    cursor: pointer;
-    margin-left: 24px;
-    width: 100px;
+.cart_pizza_card__change {
+  font-size: $p-regular-size;
+  color: $text-quartenery-color;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 24px;
+  width: 100px;
+  background-color: transparent;
 }
 
-.cart_pizza_card__price{
-    font-size: $body-primary-text-size;
-    color: $text-primary-color;
-    font-weight: 500;
-    width: 160px;
+.cart_pizza_card__price {
+  font-size: $body-primary-text-size;
+  color: $text-primary-color;
+  font-weight: 500;
+  width: 160px;
 }
 
-.cart_pizza_card__icon{
-    cursor: pointer;
+.cart_pizza_card__icon {
+  cursor: pointer;
 }

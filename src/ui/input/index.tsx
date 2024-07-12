@@ -1,14 +1,22 @@
 import type { ComponentProps } from 'react';
-import styles from './style.module.scss'
-import { UseFormRegisterReturn } from 'react-hook-form';
-import classNames from 'classnames'
+import React from 'react';
+import { clsx } from 'clsx';
+
+import styles from './style.module.scss';
 
 interface InputProps extends ComponentProps<'input'> {
-	register: UseFormRegisterReturn
-	error: boolean
+  error: boolean;
 }
 
-export const Input: React.FC<InputProps> = (props) => {
-	const inputStyles = classNames(styles.input, props.error && styles.__error)
-	return <input type="text" {...props.register} className={inputStyles} {...props} />;
-};
+export const Input = React.forwardRef(
+  ({ error, ...props }: InputProps, ref: React.ForwardedRef<HTMLInputElement>) => {
+    return (
+      <input
+        type='text'
+        className={clsx(styles.input, { [styles.error]: error })}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+) as (props: InputProps & { ref?: React.ForwardedRef<HTMLInputElement> }) => React.ReactElement;

@@ -1,12 +1,10 @@
-import { OrderForm } from "@components/orderForm"
-import { PageLayout } from "@components/pageLayout"
-import { PageTitle } from "@components/pageTitle"
+import { OrderForm } from '@components/orderForm';
+import { PageLayout } from '@components/pageLayout';
+import { PageTitle } from '@components/pageTitle';
 
-export const CreateOrderPage = () => {
-    return(
-        <PageLayout>
-            <PageTitle title="Введите ваши данные"/>
-            <OrderForm/>
-        </PageLayout>
-    )
-}
+export const CreateOrderPage = () => (
+  <PageLayout>
+    <PageTitle title='Введите ваши данные' />
+    <OrderForm />
+  </PageLayout>
+);
