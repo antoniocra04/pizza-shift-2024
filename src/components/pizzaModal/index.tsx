@@ -6,6 +6,8 @@ import type { CartPizza } from '@store/cart/cartSlice';
 import { Button } from '@ui/button';
 import { Modal } from '@ui/modal';
 import { Tabs } from '@ui/tabs';
+import { PizzaIngredient } from '@utils/PizzaIngredient';
+import { PizzaSize } from '@utils/PizzaSize';
 
 import styles from './style.module.scss';
 
@@ -46,11 +48,11 @@ export const PizzaModal = ({ pizza, onClick, onClose }: PizzaModalProps) => {
                 {currentSize * 5 + 30} см, традиционное тесто
               </p>
               <p className={styles.pizza_modal__ingredients}>
-                {pizza.ingredients.map((ing) => `${ing.name} `)}
+                {pizza.ingredients.map((ing) => `${PizzaIngredient[ing.name]} `)}
               </p>
             </div>
             <Tabs
-              tabs={pizza.sizes.map((size) => size.name)}
+              tabs={pizza.sizes.map((size) => PizzaSize[size.name])}
               setActive={setCurrentSize}
               active={currentSize}
             />

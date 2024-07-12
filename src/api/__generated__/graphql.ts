@@ -915,7 +915,15 @@ export type SignInMutationVariables = Exact<{
 }>;
 
 
-export type SignInMutation = { __typename?: 'Mutation', signin: { __typename?: 'SignInResponse', reason?: string, success: boolean, token: string } };
+export type SignInMutation = { __typename?: 'Mutation', signin: { __typename?: 'SignInResponse', reason?: string, success: boolean, token: string, user: { __typename?: 'User', lastname?: string, phone: string, firstname?: string, email?: string } } };
+
+export type UpdateProfileMutationVariables = Exact<{
+  phone: Scalars['String']['input'];
+  profile: UpdateProfileProfileDto;
+}>;
+
+
+export type UpdateProfileMutation = { __typename?: 'Mutation', updateProfile: { __typename?: 'UpdateProfileResponse', user: { __typename?: 'User', _id: string, city?: string, email?: string, firstname?: string, lastname?: string, middlename?: string, phone: string } } };
 
 export type GetPizzaOrderQueryVariables = Exact<{
   orderId: Scalars['String']['input'];
@@ -938,14 +946,6 @@ export type GetSessionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetSessionQuery = { __typename?: 'Query', session: { __typename?: 'SessionResponse', user: { __typename?: 'User', _id: string, city?: string, email?: string, firstname?: string, lastname?: string, middlename?: string, phone: string } } };
-
-export type UpdateProfileMutationVariables = Exact<{
-  phone: Scalars['String']['input'];
-  profile: UpdateProfileProfileDto;
-}>;
-
-
-export type UpdateProfileMutation = { __typename?: 'Mutation', updateProfile: { __typename?: 'UpdateProfileResponse', user: { __typename?: 'User', _id: string, city?: string, email?: string, firstname?: string, lastname?: string, middlename?: string, phone: string } } };
 
 
 export const CancelOrderDocument = gql`
@@ -1069,6 +1069,12 @@ export const SignInDocument = gql`
     reason
     success
     token
+    user {
+      lastname
+      phone
+      firstname
+      email
+    }
   }
 }
     `;
@@ -1099,6 +1105,48 @@ export function useSignInMutation(baseOptions?: Apollo.MutationHookOptions<SignI
 export type SignInMutationHookResult = ReturnType<typeof useSignInMutation>;
 export type SignInMutationResult = Apollo.MutationResult<SignInMutation>;
 export type SignInMutationOptions = Apollo.BaseMutationOptions<SignInMutation, SignInMutationVariables>;
+export const UpdateProfileDocument = gql`
+    mutation UpdateProfile($phone: String!, $profile: UpdateProfileProfileDto!) {
+  updateProfile(phone: $phone, profile: $profile) {
+    user {
+      _id
+      city
+      email
+      firstname
+      lastname
+      middlename
+      phone
+    }
+  }
+}
+    `;
+export type UpdateProfileMutationFn = Apollo.MutationFunction<UpdateProfileMutation, UpdateProfileMutationVariables>;
+
+/**
+ * __useUpdateProfileMutation__
+ *
+ * To run a mutation, you first call `useUpdateProfileMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateProfileMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateProfileMutation, { data, loading, error }] = useUpdateProfileMutation({
+ *   variables: {
+ *      phone: // value for 'phone'
+ *      profile: // value for 'profile'
+ *   },
+ * });
+ */
+export function useUpdateProfileMutation(baseOptions?: Apollo.MutationHookOptions<UpdateProfileMutation, UpdateProfileMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateProfileMutation, UpdateProfileMutationVariables>(UpdateProfileDocument, options);
+      }
+export type UpdateProfileMutationHookResult = ReturnType<typeof useUpdateProfileMutation>;
+export type UpdateProfileMutationResult = Apollo.MutationResult<UpdateProfileMutation>;
+export type UpdateProfileMutationOptions = Apollo.BaseMutationOptions<UpdateProfileMutation, UpdateProfileMutationVariables>;
 export const GetPizzaOrderDocument = gql`
     query getPizzaOrder($orderId: String!) {
   getPizzaOrder(orderId: $orderId) {
@@ -1301,45 +1349,3 @@ export type GetSessionQueryHookResult = ReturnType<typeof useGetSessionQuery>;
 export type GetSessionLazyQueryHookResult = ReturnType<typeof useGetSessionLazyQuery>;
 export type GetSessionSuspenseQueryHookResult = ReturnType<typeof useGetSessionSuspenseQuery>;
 export type GetSessionQueryResult = Apollo.QueryResult<GetSessionQuery, GetSessionQueryVariables>;
-export const UpdateProfileDocument = gql`
-    mutation UpdateProfile($phone: String!, $profile: UpdateProfileProfileDto!) {
-  updateProfile(phone: $phone, profile: $profile) {
-    user {
-      _id
-      city
-      email
-      firstname
-      lastname
-      middlename
-      phone
-    }
-  }
-}
-    `;
-export type UpdateProfileMutationFn = Apollo.MutationFunction<UpdateProfileMutation, UpdateProfileMutationVariables>;
-
-/**
- * __useUpdateProfileMutation__
- *
- * To run a mutation, you first call `useUpdateProfileMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateProfileMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateProfileMutation, { data, loading, error }] = useUpdateProfileMutation({
- *   variables: {
- *      phone: // value for 'phone'
- *      profile: // value for 'profile'
- *   },
- * });
- */
-export function useUpdateProfileMutation(baseOptions?: Apollo.MutationHookOptions<UpdateProfileMutation, UpdateProfileMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateProfileMutation, UpdateProfileMutationVariables>(UpdateProfileDocument, options);
-      }
-export type UpdateProfileMutationHookResult = ReturnType<typeof useUpdateProfileMutation>;
-export type UpdateProfileMutationResult = Apollo.MutationResult<UpdateProfileMutation>;
-export type UpdateProfileMutationOptions = Apollo.BaseMutationOptions<UpdateProfileMutation, UpdateProfileMutationVariables>;

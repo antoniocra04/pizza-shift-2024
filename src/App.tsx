@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import { useSelector } from '@store/baseHooks';
+import { useDispatch, useSelector } from '@store/baseHooks';
+import { setToken } from '@store/user/userSlice';
 
 import { AuthPage } from './pages/auth';
 import { CartPage } from './pages/cart';
@@ -48,11 +50,21 @@ const router = createBrowserRouter([
 
 export const App = () => {
   const token = useSelector((state) => state.user.token);
+  const dispatch = useDispatch();
+
   const client = new ApolloClient({
     uri: `${import.meta.env.VITE_BACKEND_URL}/graphql`,
     cache: new InMemoryCache(),
     headers: {
       authorization: token ? `Bearer ${token}` : ''
+    }
+  });
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      dispatch(setToken(token));
     }
   });
 

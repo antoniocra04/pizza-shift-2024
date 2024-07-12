@@ -38,7 +38,7 @@ export const PaymentSuccsessModal = ({
         </div>
         <p className={styles.succsess_modal__subtitle}>Вся информация была продублирована в SMS</p>
       </div>
-      <div className={styles.succsess_modal__button}>
+      <div onClick={onClose} className={styles.succsess_modal__button}>
         <Link to='/'>Перейти в главное меню</Link>
       </div>
     </Modal>

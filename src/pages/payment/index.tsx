@@ -18,6 +18,11 @@ export const PaymentPage = () => {
   const cartDispatch = useDispatch();
   const order = cart.products.map((product) => `${product.name} `).toString();
 
+  const handleClose = () => {
+    cartDispatch(clearCart());
+    setIsModalActive(false);
+  };
+
   const onSubmit: SubmitHandler<PaymentFormInputs> = (data) => {
     const { number, cvv, date } = data;
     createOrder({
@@ -51,7 +56,6 @@ export const PaymentPage = () => {
       }
     }).then(() => {
       setIsModalActive(true);
-      cartDispatch(clearCart());
     });
   };
 
@@ -64,7 +68,7 @@ export const PaymentPage = () => {
           order={order}
           price={cart.cartTotalPrice}
           address={`${orderInfo.address.street}, ${orderInfo.address.house}, ${orderInfo.address.apartment}`}
-          onClose={() => setIsModalActive(false)}
+          onClose={handleClose}
         />
       )}
     </PageLayout>

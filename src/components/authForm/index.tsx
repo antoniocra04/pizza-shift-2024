@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCreateOtpMutation, useSignInMutation } from '@api/__generated__/graphql';
 import { useTimer } from '@hooks/useTimer';
 import { useDispatch } from '@store/baseHooks';
+import { addInfo } from '@store/orderInfo/orderInfoSlice';
 import { setToken } from '@store/user/userSlice';
 import { Button } from '@ui/button';
 import { Input } from '@ui/input';
@@ -25,7 +26,7 @@ export const AuthForm = () => {
   const [createOtp, { data }] = useCreateOtpMutation();
   const [signIn, signInInfo] = useSignInMutation();
   const [timer, setTimer] = useTimer(0);
-  const userDispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleCreateOtp = () => {
@@ -43,7 +44,20 @@ export const AuthForm = () => {
       }
     }).then((res) => {
       if (res.data) {
-        userDispatch(setToken(res.data.signin.token));
+        dispatch(setToken(res.data.signin.token));
+        dispatch(
+          addInfo({
+            email: res.data.signin.user.email || '',
+            phone: res.data.signin.user.phone,
+            name: res.data.signin.user.firstname || '',
+            surname: res.data.signin.user.lastname || '',
+            address: {
+              apartment: '',
+              street: '',
+              house: ''
+            }
+          })
+        );
         navigate('/');
       }
     });

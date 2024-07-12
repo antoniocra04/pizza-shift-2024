@@ -1,0 +1,20 @@
+export const PizzaIngredient = {
+  BACON: 'Бекон',
+  BASIL: 'Базилик',
+  CHEDDAR: 'Чеддер',
+  CHICKEN_FILLET: '',
+  CHILE: 'Курица',
+  FETA: 'Сыр фета',
+  GREEN_PEPPER: 'Зеленый перец',
+  HAM: 'Паштет',
+  MEATBALLS: 'Фрикадельки',
+  MOZZARELLA: 'Моцарелла',
+  MUSHROOMS: 'Грибы',
+  ONION: 'Лук',
+  PARMESAN: 'Пармезан',
+  PEPERONI: 'Пеперони',
+  PICKLE: 'Огурцы',
+  PINEAPPLE: 'Ананас',
+  SHRIMPS: 'Креветки',
+  TOMATO: 'Помидор'
+};

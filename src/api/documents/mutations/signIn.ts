@@ -5,7 +5,13 @@ export const SIGN_IN = gql(`
         signin(code: $code, phone: $phone){
             reason,
             success,
-            token
+            token,
+            user{
+                lastname
+                phone
+                firstname
+                email
+            }
         }
     }
 `);

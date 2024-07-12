@@ -49,7 +49,7 @@ export const PizzaCatalog = () => {
   return (
     <div className={styles.pizza_catalog}>
       {loading
-        ? 'sdf'
+        ? ''
         : data?.getPizzasCatalog.catalog.map(({ name, description, sizes, img, id }) => (
             <PizzaCard
               key={id}
